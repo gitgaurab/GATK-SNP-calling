@@ -1,0 +1,535 @@
+#!/bin/bash
+#SBATCH --job-name=sort_index_filter         # Job name
+#SBATCH --partition=batch             # Partition (queue) name
+#SBATCH --ntasks=1                    # Run on a single CPU
+#SBATCH --mem=64gb                     # Job memory request
+#SBATCH --time=100:00:00               # Time limit hrs:min:sec
+#SBATCH --output=sort_index_filter.%j.out    # Standard output log
+#SBATCH --error=sort_index_filter.%j.err     # Standard error log
+
+#SBATCH --mail-type=END,FAIL          # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=gb92068@uga.edu  # Where to send mail
+
+cd $SLURM_SUBMIT_DIR
+
+##Load the module and assign directory for sequence data and results
+
+ml picard/2.21.6-Java-11
+ml GATK/4.1.6.0-GCCcore-8.3.0-Java-1.8
+ml SAMtools/1.10-iccifort-2019.5.281
+
+
+data='/home/gb92068/GATK_GBS_Pawnee_Elliott/result/Elliott/AddOrReplaceGroup/'
+result='/home/gb92068/GATK_GBS_Pawnee_Elliott/result/Elliott/Sort_index_filter/'
+result1='/home/gb92068/GATK_GBS_Pawnee_Elliott/result/Elliott/mapped_reads_bam/'
+
+##Run the command
+
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/Elliott_a.bam OUTPUT=$result/Elliott_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/Pawnee_a.bam OUTPUT=$result/Pawnee_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-10_a.bam OUTPUT=$result/PawXElliot-99-9-10_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-11_a.bam OUTPUT=$result/PawXElliot-99-9-11_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-12_a.bam OUTPUT=$result/PawXElliot-99-9-12_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-13_a.bam OUTPUT=$result/PawXElliot-99-9-13_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-14_a.bam OUTPUT=$result/PawXElliot-99-9-14_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-15_a.bam OUTPUT=$result/PawXElliot-99-9-15_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-16_a.bam OUTPUT=$result/PawXElliot-99-9-16_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-18_a.bam OUTPUT=$result/PawXElliot-99-9-18_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-19_a.bam OUTPUT=$result/PawXElliot-99-9-19_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-1_a.bam OUTPUT=$result/PawXElliot-99-9-1_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-20_a.bam OUTPUT=$result/PawXElliot-99-9-20_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-21_a.bam OUTPUT=$result/PawXElliot-99-9-21_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-22_a.bam OUTPUT=$result/PawXElliot-99-9-22_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-23_a.bam OUTPUT=$result/PawXElliot-99-9-23_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-24_a.bam OUTPUT=$result/PawXElliot-99-9-24_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-25_a.bam OUTPUT=$result/PawXElliot-99-9-25_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-26_a.bam OUTPUT=$result/PawXElliot-99-9-26_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-27_a.bam OUTPUT=$result/PawXElliot-99-9-27_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-28_a.bam OUTPUT=$result/PawXElliot-99-9-28_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-29_a.bam OUTPUT=$result/PawXElliot-99-9-29_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-2_a.bam OUTPUT=$result/PawXElliot-99-9-2_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-30_a.bam OUTPUT=$result/PawXElliot-99-9-30_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-31_a.bam OUTPUT=$result/PawXElliot-99-9-31_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-32_a.bam OUTPUT=$result/PawXElliot-99-9-32_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-33_a.bam OUTPUT=$result/PawXElliot-99-9-33_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-34_a.bam OUTPUT=$result/PawXElliot-99-9-34_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-35_a.bam OUTPUT=$result/PawXElliot-99-9-35_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-36_a.bam OUTPUT=$result/PawXElliot-99-9-36_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-37_a.bam OUTPUT=$result/PawXElliot-99-9-37_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-38_a.bam OUTPUT=$result/PawXElliot-99-9-38_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-39_a.bam OUTPUT=$result/PawXElliot-99-9-39_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-3_a.bam OUTPUT=$result/PawXElliot-99-9-3_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-40_a.bam OUTPUT=$result/PawXElliot-99-9-40_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-41_a.bam OUTPUT=$result/PawXElliot-99-9-41_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-42_a.bam OUTPUT=$result/PawXElliot-99-9-42_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-43_a.bam OUTPUT=$result/PawXElliot-99-9-43_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-44_a.bam OUTPUT=$result/PawXElliot-99-9-44_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-45_a.bam OUTPUT=$result/PawXElliot-99-9-45_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-46_a.bam OUTPUT=$result/PawXElliot-99-9-46_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-47_a.bam OUTPUT=$result/PawXElliot-99-9-47_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-48_a.bam OUTPUT=$result/PawXElliot-99-9-48_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-49_a.bam OUTPUT=$result/PawXElliot-99-9-49_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-4_a.bam OUTPUT=$result/PawXElliot-99-9-4_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-50_a.bam OUTPUT=$result/PawXElliot-99-9-50_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-51_a.bam OUTPUT=$result/PawXElliot-99-9-51_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-52_a.bam OUTPUT=$result/PawXElliot-99-9-52_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-53_a.bam OUTPUT=$result/PawXElliot-99-9-53_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-54_a.bam OUTPUT=$result/PawXElliot-99-9-54_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-55_a.bam OUTPUT=$result/PawXElliot-99-9-55_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-56_a.bam OUTPUT=$result/PawXElliot-99-9-56_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-57_a.bam OUTPUT=$result/PawXElliot-99-9-57_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-58_a.bam OUTPUT=$result/PawXElliot-99-9-58_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-59_a.bam OUTPUT=$result/PawXElliot-99-9-59_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-5_a.bam OUTPUT=$result/PawXElliot-99-9-5_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-60_a.bam OUTPUT=$result/PawXElliot-99-9-60_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-61_a.bam OUTPUT=$result/PawXElliot-99-9-61_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-62_a.bam OUTPUT=$result/PawXElliot-99-9-62_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-63_a.bam OUTPUT=$result/PawXElliot-99-9-63_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-64_a.bam OUTPUT=$result/PawXElliot-99-9-64_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-65_a.bam OUTPUT=$result/PawXElliot-99-9-65_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-66_a.bam OUTPUT=$result/PawXElliot-99-9-66_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-68_a.bam OUTPUT=$result/PawXElliot-99-9-68_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-69_a.bam OUTPUT=$result/PawXElliot-99-9-69_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-6_a.bam OUTPUT=$result/PawXElliot-99-9-6_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-70_a.bam OUTPUT=$result/PawXElliot-99-9-70_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-7_a.bam OUTPUT=$result/PawXElliot-99-9-7_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-99-9-8_a.bam OUTPUT=$result/PawXElliot-99-9-8_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW10_a.bam OUTPUT=$result/PawXElliot-BW10_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW11_a.bam OUTPUT=$result/PawXElliot-BW11_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW12_a.bam OUTPUT=$result/PawXElliot-BW12_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW13_a.bam OUTPUT=$result/PawXElliot-BW13_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW14_a.bam OUTPUT=$result/PawXElliot-BW14_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW15_a.bam OUTPUT=$result/PawXElliot-BW15_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW16_a.bam OUTPUT=$result/PawXElliot-BW16_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW17_a.bam OUTPUT=$result/PawXElliot-BW17_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW18_a.bam OUTPUT=$result/PawXElliot-BW18_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW19_a.bam OUTPUT=$result/PawXElliot-BW19_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW1_a.bam OUTPUT=$result/PawXElliot-BW1_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW20_a.bam OUTPUT=$result/PawXElliot-BW20_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW21_a.bam OUTPUT=$result/PawXElliot-BW21_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW22_a.bam OUTPUT=$result/PawXElliot-BW22_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW23_a.bam OUTPUT=$result/PawXElliot-BW23_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW24_a.bam OUTPUT=$result/PawXElliot-BW24_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW25_a.bam OUTPUT=$result/PawXElliot-BW25_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW26_a.bam OUTPUT=$result/PawXElliot-BW26_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW27_a.bam OUTPUT=$result/PawXElliot-BW27_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW28_a.bam OUTPUT=$result/PawXElliot-BW28_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW29_a.bam OUTPUT=$result/PawXElliot-BW29_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW2_a.bam OUTPUT=$result/PawXElliot-BW2_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW30_a.bam OUTPUT=$result/PawXElliot-BW30_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW31_a.bam OUTPUT=$result/PawXElliot-BW31_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW32_a.bam OUTPUT=$result/PawXElliot-BW32_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW33_a.bam OUTPUT=$result/PawXElliot-BW33_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW34_a.bam OUTPUT=$result/PawXElliot-BW34_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW35_a.bam OUTPUT=$result/PawXElliot-BW35_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW36_a.bam OUTPUT=$result/PawXElliot-BW36_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW37_a.bam OUTPUT=$result/PawXElliot-BW37_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW38_a.bam OUTPUT=$result/PawXElliot-BW38_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW39_a.bam OUTPUT=$result/PawXElliot-BW39_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW3_a.bam OUTPUT=$result/PawXElliot-BW3_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW40_a.bam OUTPUT=$result/PawXElliot-BW40_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW41_a.bam OUTPUT=$result/PawXElliot-BW41_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW42_a.bam OUTPUT=$result/PawXElliot-BW42_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW43_a.bam OUTPUT=$result/PawXElliot-BW43_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW44_a.bam OUTPUT=$result/PawXElliot-BW44_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW45_a.bam OUTPUT=$result/PawXElliot-BW45_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW46_a.bam OUTPUT=$result/PawXElliot-BW46_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW48_a.bam OUTPUT=$result/PawXElliot-BW48_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW49_a.bam OUTPUT=$result/PawXElliot-BW49_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW4_a.bam OUTPUT=$result/PawXElliot-BW4_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW50_a.bam OUTPUT=$result/PawXElliot-BW50_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW51_a.bam OUTPUT=$result/PawXElliot-BW51_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW52_a.bam OUTPUT=$result/PawXElliot-BW52_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW53_a.bam OUTPUT=$result/PawXElliot-BW53_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW54_a.bam OUTPUT=$result/PawXElliot-BW54_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW55_a.bam OUTPUT=$result/PawXElliot-BW55_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW56_a.bam OUTPUT=$result/PawXElliot-BW56_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW5_a.bam OUTPUT=$result/PawXElliot-BW5_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW6_a.bam OUTPUT=$result/PawXElliot-BW6_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW7_a.bam OUTPUT=$result/PawXElliot-BW7_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW8_a.bam OUTPUT=$result/PawXElliot-BW8_as.bam   SORT_ORDER=coordinate
+java -jar $EBROOTPICARD/picard.jar SortSam INPUT=$data/PawXElliot-BW9_a.bam OUTPUT=$result/PawXElliot-BW9_as.bam   SORT_ORDER=coordinate
+
+
+
+#### Indexing
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/Elliott_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/Pawnee_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-10_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-11_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-12_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-13_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-14_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-15_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-16_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-18_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-19_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-1_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-20_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-21_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-22_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-23_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-24_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-25_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-26_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-27_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-28_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-29_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-2_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-30_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-31_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-32_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-33_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-34_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-35_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-36_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-37_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-38_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-39_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-3_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-40_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-41_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-42_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-43_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-44_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-45_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-46_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-47_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-48_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-49_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-4_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-50_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-51_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-52_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-53_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-54_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-55_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-56_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-57_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-58_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-59_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-5_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-60_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-61_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-62_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-63_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-64_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-65_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-66_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-68_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-69_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-6_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-70_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-7_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-99-9-8_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW10_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW11_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW12_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW13_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW14_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW15_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW16_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW17_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW18_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW19_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW1_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW20_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW21_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW22_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW23_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW24_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW25_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW26_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW27_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW28_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW29_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW2_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW30_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW31_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW32_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW33_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW34_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW35_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW36_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW37_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW38_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW39_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW3_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW40_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW41_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW42_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW43_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW44_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW45_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW46_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW48_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW49_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW4_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW50_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW51_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW52_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW53_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW54_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW55_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW56_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW5_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW6_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW7_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW8_as.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result/PawXElliot-BW9_as.bam
+
+
+### Filter unmapped reads with flag 4
+
+time samtools view -bhF 4 $result/Elliott_as.bam  > $result1/Elliott_asm.bam
+time samtools view -bhF 4 $result/Pawnee_as.bam  > $result1/Pawnee_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-10_as.bam  > $result1/PawXElliot-99-9-10_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-11_as.bam  > $result1/PawXElliot-99-9-11_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-12_as.bam  > $result1/PawXElliot-99-9-12_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-13_as.bam  > $result1/PawXElliot-99-9-13_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-14_as.bam  > $result1/PawXElliot-99-9-14_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-15_as.bam  > $result1/PawXElliot-99-9-15_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-16_as.bam  > $result1/PawXElliot-99-9-16_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-18_as.bam  > $result1/PawXElliot-99-9-18_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-19_as.bam  > $result1/PawXElliot-99-9-19_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-1_as.bam  > $result1/PawXElliot-99-9-1_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-20_as.bam  > $result1/PawXElliot-99-9-20_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-21_as.bam  > $result1/PawXElliot-99-9-21_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-22_as.bam  > $result1/PawXElliot-99-9-22_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-23_as.bam  > $result1/PawXElliot-99-9-23_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-24_as.bam  > $result1/PawXElliot-99-9-24_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-25_as.bam  > $result1/PawXElliot-99-9-25_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-26_as.bam  > $result1/PawXElliot-99-9-26_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-27_as.bam  > $result1/PawXElliot-99-9-27_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-28_as.bam  > $result1/PawXElliot-99-9-28_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-29_as.bam  > $result1/PawXElliot-99-9-29_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-2_as.bam  > $result1/PawXElliot-99-9-2_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-30_as.bam  > $result1/PawXElliot-99-9-30_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-31_as.bam  > $result1/PawXElliot-99-9-31_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-32_as.bam  > $result1/PawXElliot-99-9-32_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-33_as.bam  > $result1/PawXElliot-99-9-33_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-34_as.bam  > $result1/PawXElliot-99-9-34_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-35_as.bam  > $result1/PawXElliot-99-9-35_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-36_as.bam  > $result1/PawXElliot-99-9-36_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-37_as.bam  > $result1/PawXElliot-99-9-37_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-38_as.bam  > $result1/PawXElliot-99-9-38_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-39_as.bam  > $result1/PawXElliot-99-9-39_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-3_as.bam  > $result1/PawXElliot-99-9-3_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-40_as.bam  > $result1/PawXElliot-99-9-40_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-41_as.bam  > $result1/PawXElliot-99-9-41_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-42_as.bam  > $result1/PawXElliot-99-9-42_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-43_as.bam  > $result1/PawXElliot-99-9-43_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-44_as.bam  > $result1/PawXElliot-99-9-44_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-45_as.bam  > $result1/PawXElliot-99-9-45_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-46_as.bam  > $result1/PawXElliot-99-9-46_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-47_as.bam  > $result1/PawXElliot-99-9-47_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-48_as.bam  > $result1/PawXElliot-99-9-48_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-49_as.bam  > $result1/PawXElliot-99-9-49_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-4_as.bam  > $result1/PawXElliot-99-9-4_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-50_as.bam  > $result1/PawXElliot-99-9-50_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-51_as.bam  > $result1/PawXElliot-99-9-51_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-52_as.bam  > $result1/PawXElliot-99-9-52_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-53_as.bam  > $result1/PawXElliot-99-9-53_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-54_as.bam  > $result1/PawXElliot-99-9-54_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-55_as.bam  > $result1/PawXElliot-99-9-55_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-56_as.bam  > $result1/PawXElliot-99-9-56_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-57_as.bam  > $result1/PawXElliot-99-9-57_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-58_as.bam  > $result1/PawXElliot-99-9-58_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-59_as.bam  > $result1/PawXElliot-99-9-59_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-5_as.bam  > $result1/PawXElliot-99-9-5_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-60_as.bam  > $result1/PawXElliot-99-9-60_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-61_as.bam  > $result1/PawXElliot-99-9-61_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-62_as.bam  > $result1/PawXElliot-99-9-62_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-63_as.bam  > $result1/PawXElliot-99-9-63_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-64_as.bam  > $result1/PawXElliot-99-9-64_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-65_as.bam  > $result1/PawXElliot-99-9-65_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-66_as.bam  > $result1/PawXElliot-99-9-66_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-68_as.bam  > $result1/PawXElliot-99-9-68_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-69_as.bam  > $result1/PawXElliot-99-9-69_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-6_as.bam  > $result1/PawXElliot-99-9-6_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-70_as.bam  > $result1/PawXElliot-99-9-70_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-7_as.bam  > $result1/PawXElliot-99-9-7_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-99-9-8_as.bam  > $result1/PawXElliot-99-9-8_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW10_as.bam  > $result1/PawXElliot-BW10_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW11_as.bam  > $result1/PawXElliot-BW11_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW12_as.bam  > $result1/PawXElliot-BW12_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW13_as.bam  > $result1/PawXElliot-BW13_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW14_as.bam  > $result1/PawXElliot-BW14_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW15_as.bam  > $result1/PawXElliot-BW15_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW16_as.bam  > $result1/PawXElliot-BW16_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW17_as.bam  > $result1/PawXElliot-BW17_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW18_as.bam  > $result1/PawXElliot-BW18_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW19_as.bam  > $result1/PawXElliot-BW19_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW1_as.bam  > $result1/PawXElliot-BW1_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW20_as.bam  > $result1/PawXElliot-BW20_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW21_as.bam  > $result1/PawXElliot-BW21_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW22_as.bam  > $result1/PawXElliot-BW22_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW23_as.bam  > $result1/PawXElliot-BW23_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW24_as.bam  > $result1/PawXElliot-BW24_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW25_as.bam  > $result1/PawXElliot-BW25_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW26_as.bam  > $result1/PawXElliot-BW26_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW27_as.bam  > $result1/PawXElliot-BW27_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW28_as.bam  > $result1/PawXElliot-BW28_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW29_as.bam  > $result1/PawXElliot-BW29_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW2_as.bam  > $result1/PawXElliot-BW2_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW30_as.bam  > $result1/PawXElliot-BW30_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW31_as.bam  > $result1/PawXElliot-BW31_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW32_as.bam  > $result1/PawXElliot-BW32_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW33_as.bam  > $result1/PawXElliot-BW33_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW34_as.bam  > $result1/PawXElliot-BW34_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW35_as.bam  > $result1/PawXElliot-BW35_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW36_as.bam  > $result1/PawXElliot-BW36_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW37_as.bam  > $result1/PawXElliot-BW37_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW38_as.bam  > $result1/PawXElliot-BW38_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW39_as.bam  > $result1/PawXElliot-BW39_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW3_as.bam  > $result1/PawXElliot-BW3_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW40_as.bam  > $result1/PawXElliot-BW40_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW41_as.bam  > $result1/PawXElliot-BW41_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW42_as.bam  > $result1/PawXElliot-BW42_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW43_as.bam  > $result1/PawXElliot-BW43_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW44_as.bam  > $result1/PawXElliot-BW44_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW45_as.bam  > $result1/PawXElliot-BW45_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW46_as.bam  > $result1/PawXElliot-BW46_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW48_as.bam  > $result1/PawXElliot-BW48_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW49_as.bam  > $result1/PawXElliot-BW49_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW4_as.bam  > $result1/PawXElliot-BW4_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW50_as.bam  > $result1/PawXElliot-BW50_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW51_as.bam  > $result1/PawXElliot-BW51_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW52_as.bam  > $result1/PawXElliot-BW52_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW53_as.bam  > $result1/PawXElliot-BW53_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW54_as.bam  > $result1/PawXElliot-BW54_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW55_as.bam  > $result1/PawXElliot-BW55_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW56_as.bam  > $result1/PawXElliot-BW56_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW5_as.bam  > $result1/PawXElliot-BW5_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW6_as.bam  > $result1/PawXElliot-BW6_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW7_as.bam  > $result1/PawXElliot-BW7_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW8_as.bam  > $result1/PawXElliot-BW8_asm.bam
+time samtools view -bhF 4 $result/PawXElliot-BW9_as.bam  > $result1/PawXElliot-BW9_asm.bam
+
+
+
+## Re-Index the BAM file
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/Elliott_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/Pawnee_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-10_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-11_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-12_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-13_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-14_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-15_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-16_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-18_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-19_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-1_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-20_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-21_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-22_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-23_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-24_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-25_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-26_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-27_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-28_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-29_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-2_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-30_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-31_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-32_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-33_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-34_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-35_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-36_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-37_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-38_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-39_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-3_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-40_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-41_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-42_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-43_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-44_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-45_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-46_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-47_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-48_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-49_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-4_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-50_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-51_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-52_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-53_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-54_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-55_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-56_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-57_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-58_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-59_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-5_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-60_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-61_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-62_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-63_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-64_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-65_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-66_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-68_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-69_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-6_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-70_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-7_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-99-9-8_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW10_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW11_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW12_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW13_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW14_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW15_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW16_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW17_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW18_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW19_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW1_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW20_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW21_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW22_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW23_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW24_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW25_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW26_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW27_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW28_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW29_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW2_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW30_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW31_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW32_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW33_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW34_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW35_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW36_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW37_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW38_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW39_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW3_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW40_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW41_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW42_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW43_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW44_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW45_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW46_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW48_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW49_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW4_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW50_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW51_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW52_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW53_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW54_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW55_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW56_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW5_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW6_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW7_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW8_asm.bam
+java -jar $EBROOTPICARD/picard.jar BuildBamIndex INPUT=$result1/PawXElliot-BW9_asm.bam
