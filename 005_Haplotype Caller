@@ -1,0 +1,150 @@
+#!/bin/bash
+#SBATCH --job-name=haplotype_caller        # Job name
+#SBATCH --partition=batch             # Partition (queue) name
+#SBATCH --ntasks=1                    # Run on a single CPU
+#SBATCH --mem=64gb                     # Job memory request
+#SBATCH --time=100:00:00               # Time limit hrs:min:sec
+#SBATCH --output=log.%j.out    # Standard output log
+#SBATCH --error=log.%j.err     # Standard error log
+
+#SBATCH --mail-type=END,FAIL          # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=gb92068@uga.edu  # Where to send mail
+
+cd $SLURM_SUBMIT_DIR
+
+##Load the module and assign directory for sequence data and results
+
+ml picard/2.21.6-Java-11
+ml GATK/4.1.6.0-GCCcore-8.3.0-Java-1.8
+ml SAMtools/1.10-iccifort-2019.5.281
+
+ref='/scratch/gb92068/GATK_Pawnee_Elliott/GATK_GBS_Pawnee_Elliott/index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa'
+data='/scratch/gb92068/GATK_Pawnee_Elliott/GATK_GBS_Pawnee_Elliott/result/Elliott/mapped_reads_bam/'
+result='/scratch/gb92068/GATK_Pawnee_Elliott/GATK_GBS_Pawnee_Elliott/result/Elliott/GVCF/'
+
+##Run the command
+
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/Elliott_asm.bam -O $result/Elliott.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/Pawnee_asm.bam -O $result/Pawnee.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-10_asm.bam -O $result/PawXElliot-99-9-10.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-11_asm.bam -O $result/PawXElliot-99-9-11.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-12_asm.bam -O $result/PawXElliot-99-9-12.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-13_asm.bam -O $result/PawXElliot-99-9-13.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-14_asm.bam -O $result/PawXElliot-99-9-14.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-15_asm.bam -O $result/PawXElliot-99-9-15.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-16_asm.bam -O $result/PawXElliot-99-9-16.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-18_asm.bam -O $result/PawXElliot-99-9-18.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-19_asm.bam -O $result/PawXElliot-99-9-19.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-1_asm.bam -O $result/PawXElliot-99-9-1.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-20_asm.bam -O $result/PawXElliot-99-9-20.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-21_asm.bam -O $result/PawXElliot-99-9-21.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-22_asm.bam -O $result/PawXElliot-99-9-22.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-23_asm.bam -O $result/PawXElliot-99-9-23.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-24_asm.bam -O $result/PawXElliot-99-9-24.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-25_asm.bam -O $result/PawXElliot-99-9-25.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-26_asm.bam -O $result/PawXElliot-99-9-26.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-27_asm.bam -O $result/PawXElliot-99-9-27.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-28_asm.bam -O $result/PawXElliot-99-9-28.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-29_asm.bam -O $result/PawXElliot-99-9-29.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-2_asm.bam -O $result/PawXElliot-99-9-2.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-30_asm.bam -O $result/PawXElliot-99-9-30.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-31_asm.bam -O $result/PawXElliot-99-9-31.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-32_asm.bam -O $result/PawXElliot-99-9-32.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-33_asm.bam -O $result/PawXElliot-99-9-33.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-34_asm.bam -O $result/PawXElliot-99-9-34.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-35_asm.bam -O $result/PawXElliot-99-9-35.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-36_asm.bam -O $result/PawXElliot-99-9-36.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-37_asm.bam -O $result/PawXElliot-99-9-37.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-38_asm.bam -O $result/PawXElliot-99-9-38.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-39_asm.bam -O $result/PawXElliot-99-9-39.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-3_asm.bam -O $result/PawXElliot-99-9-3.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-40_asm.bam -O $result/PawXElliot-99-9-40.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-41_asm.bam -O $result/PawXElliot-99-9-41.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-42_asm.bam -O $result/PawXElliot-99-9-42.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-43_asm.bam -O $result/PawXElliot-99-9-43.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-44_asm.bam -O $result/PawXElliot-99-9-44.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-45_asm.bam -O $result/PawXElliot-99-9-45.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-46_asm.bam -O $result/PawXElliot-99-9-46.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-47_asm.bam -O $result/PawXElliot-99-9-47.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-48_asm.bam -O $result/PawXElliot-99-9-48.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-49_asm.bam -O $result/PawXElliot-99-9-49.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-4_asm.bam -O $result/PawXElliot-99-9-4.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-50_asm.bam -O $result/PawXElliot-99-9-50.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-51_asm.bam -O $result/PawXElliot-99-9-51.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-52_asm.bam -O $result/PawXElliot-99-9-52.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-53_asm.bam -O $result/PawXElliot-99-9-53.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-54_asm.bam -O $result/PawXElliot-99-9-54.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-55_asm.bam -O $result/PawXElliot-99-9-55.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-56_asm.bam -O $result/PawXElliot-99-9-56.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-57_asm.bam -O $result/PawXElliot-99-9-57.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-58_asm.bam -O $result/PawXElliot-99-9-58.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-59_asm.bam -O $result/PawXElliot-99-9-59.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-5_asm.bam -O $result/PawXElliot-99-9-5.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-60_asm.bam -O $result/PawXElliot-99-9-60.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-61_asm.bam -O $result/PawXElliot-99-9-61.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-62_asm.bam -O $result/PawXElliot-99-9-62.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-63_asm.bam -O $result/PawXElliot-99-9-63.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-64_asm.bam -O $result/PawXElliot-99-9-64.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-65_asm.bam -O $result/PawXElliot-99-9-65.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-66_asm.bam -O $result/PawXElliot-99-9-66.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-68_asm.bam -O $result/PawXElliot-99-9-68.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-69_asm.bam -O $result/PawXElliot-99-9-69.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-6_asm.bam -O $result/PawXElliot-99-9-6.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-70_asm.bam -O $result/PawXElliot-99-9-70.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-7_asm.bam -O $result/PawXElliot-99-9-7.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-99-9-8_asm.bam -O $result/PawXElliot-99-9-8.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW10_asm.bam -O $result/PawXElliot-BW10.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW11_asm.bam -O $result/PawXElliot-BW11.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW12_asm.bam -O $result/PawXElliot-BW12.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW13_asm.bam -O $result/PawXElliot-BW13.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW14_asm.bam -O $result/PawXElliot-BW14.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW15_asm.bam -O $result/PawXElliot-BW15.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW16_asm.bam -O $result/PawXElliot-BW16.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW17_asm.bam -O $result/PawXElliot-BW17.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW18_asm.bam -O $result/PawXElliot-BW18.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW19_asm.bam -O $result/PawXElliot-BW19.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW1_asm.bam -O $result/PawXElliot-BW1.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW20_asm.bam -O $result/PawXElliot-BW20.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW21_asm.bam -O $result/PawXElliot-BW21.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW22_asm.bam -O $result/PawXElliot-BW22.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW23_asm.bam -O $result/PawXElliot-BW23.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW24_asm.bam -O $result/PawXElliot-BW24.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW25_asm.bam -O $result/PawXElliot-BW25.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW26_asm.bam -O $result/PawXElliot-BW26.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW27_asm.bam -O $result/PawXElliot-BW27.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW28_asm.bam -O $result/PawXElliot-BW28.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW29_asm.bam -O $result/PawXElliot-BW29.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW2_asm.bam -O $result/PawXElliot-BW2.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW30_asm.bam -O $result/PawXElliot-BW30.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW31_asm.bam -O $result/PawXElliot-BW31.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW32_asm.bam -O $result/PawXElliot-BW32.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW33_asm.bam -O $result/PawXElliot-BW33.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW34_asm.bam -O $result/PawXElliot-BW34.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW35_asm.bam -O $result/PawXElliot-BW35.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW36_asm.bam -O $result/PawXElliot-BW36.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW37_asm.bam -O $result/PawXElliot-BW37.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW38_asm.bam -O $result/PawXElliot-BW38.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW39_asm.bam -O $result/PawXElliot-BW39.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW3_asm.bam -O $result/PawXElliot-BW3.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW40_asm.bam -O $result/PawXElliot-BW40.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW41_asm.bam -O $result/PawXElliot-BW41.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW42_asm.bam -O $result/PawXElliot-BW42.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW43_asm.bam -O $result/PawXElliot-BW43.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW44_asm.bam -O $result/PawXElliot-BW44.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW45_asm.bam -O $result/PawXElliot-BW45.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW46_asm.bam -O $result/PawXElliot-BW46.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW48_asm.bam -O $result/PawXElliot-BW48.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW49_asm.bam -O $result/PawXElliot-BW49.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW4_asm.bam -O $result/PawXElliot-BW4.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW50_asm.bam -O $result/PawXElliot-BW50.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW51_asm.bam -O $result/PawXElliot-BW51.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW52_asm.bam -O $result/PawXElliot-BW52.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW53_asm.bam -O $result/PawXElliot-BW53.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW54_asm.bam -O $result/PawXElliot-BW54.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW55_asm.bam -O $result/PawXElliot-BW55.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW56_asm.bam -O $result/PawXElliot-BW56.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW5_asm.bam -O $result/PawXElliot-BW5.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW6_asm.bam -O $result/PawXElliot-BW6.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW7_asm.bam -O $result/PawXElliot-BW7.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW8_asm.bam -O $result/PawXElliot-BW8.g.vcf.gz -ERC GVCF
+gatk --java-options "-Xmx48g" HaplotypeCaller -R $ref -I $data/PawXElliot-BW9_asm.bam -O $result/PawXElliot-BW9.g.vcf.gz -ERC GVCF
