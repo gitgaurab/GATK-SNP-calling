@@ -1,0 +1,271 @@
+#!/bin/bash
+#SBATCH --job-name=AddOrReplaceGroup         # Job name
+#SBATCH --partition=batch             # Partition (queue) name
+#SBATCH --ntasks=1                    # Run on a single CPU
+#SBATCH --mem=64gb                     # Job memory request
+#SBATCH --time=100:00:00               # Time limit hrs:min:sec
+#SBATCH --output=log.%j.out    # Standard output log
+#SBATCH --error=log.%j.err     # Standard error log
+
+#SBATCH --mail-type=END,FAIL          # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=gb92068@uga.edu  # Where to send mail
+
+cd $SLURM_SUBMIT_DIR
+
+##Load the module and assign directory for sequence data and results
+
+ml picard/2.21.6-Java-11
+ml GATK/4.1.6.0-GCCcore-8.3.0-Java-1.8
+ml SAMtools/1.10-iccifort-2019.5.281
+
+
+data='/home/gb92068/GATK_GBS_Pawnee_Elliott/result/Elliott/bam/'
+result='/home/gb92068/GATK_GBS_Pawnee_Elliott/result/Elliott/AddOrReplaceGroup/'
+
+##Run the command
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/Elliott.bam O=$result/Elliott_a.bam RGID=Elliott RGLB=Elliott RGPL=ILLUMINA RGPU=Elliott RGSM=Elliott
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/Pawnee.bam O=$result/Pawnee_a.bam RGID=Pawnee RGLB=Pawnee RGPL=ILLUMINA RGPU=Pawnee RGSM=Pawnee
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-10.bam O=$result/PawXElliot-99-9-10_a.bam RGID=PawXElliot-99-9-10 RGLB=PawXElliot-99-9-10 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-10 RGSM=PawXElliot-99-9-10
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-11.bam O=$result/PawXElliot-99-9-11_a.bam RGID=PawXElliot-99-9-11 RGLB=PawXElliot-99-9-11 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-11 RGSM=PawXElliot-99-9-11
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-12.bam O=$result/PawXElliot-99-9-12_a.bam RGID=PawXElliot-99-9-12 RGLB=PawXElliot-99-9-12 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-12 RGSM=PawXElliot-99-9-12
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-13.bam O=$result/PawXElliot-99-9-13_a.bam RGID=PawXElliot-99-9-13 RGLB=PawXElliot-99-9-13 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-13 RGSM=PawXElliot-99-9-13
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-14.bam O=$result/PawXElliot-99-9-14_a.bam RGID=PawXElliot-99-9-14 RGLB=PawXElliot-99-9-14 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-14 RGSM=PawXElliot-99-9-14
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-15.bam O=$result/PawXElliot-99-9-15_a.bam RGID=PawXElliot-99-9-15 RGLB=PawXElliot-99-9-15 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-15 RGSM=PawXElliot-99-9-15
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-16.bam O=$result/PawXElliot-99-9-16_a.bam RGID=PawXElliot-99-9-16 RGLB=PawXElliot-99-9-16 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-16 RGSM=PawXElliot-99-9-16
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-18.bam O=$result/PawXElliot-99-9-18_a.bam RGID=PawXElliot-99-9-18 RGLB=PawXElliot-99-9-18 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-18 RGSM=PawXElliot-99-9-18
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-19.bam O=$result/PawXElliot-99-9-19_a.bam RGID=PawXElliot-99-9-19 RGLB=PawXElliot-99-9-19 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-19 RGSM=PawXElliot-99-9-19
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-1.bam O=$result/PawXElliot-99-9-1_a.bam RGID=PawXElliot-99-9-1 RGLB=PawXElliot-99-9-1 RGPL=ILLUMINA RGPU=PawXEllio
+t-99-9-1 RGSM=PawXElliot-99-9-1
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-20.bam O=$result/PawXElliot-99-9-20_a.bam RGID=PawXElliot-99-9-20 RGLB=PawXElliot-99-9-20 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-20 RGSM=PawXElliot-99-9-20
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-21.bam O=$result/PawXElliot-99-9-21_a.bam RGID=PawXElliot-99-9-21 RGLB=PawXElliot-99-9-21 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-21 RGSM=PawXElliot-99-9-21
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-22.bam O=$result/PawXElliot-99-9-22_a.bam RGID=PawXElliot-99-9-22 RGLB=PawXElliot-99-9-22 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-22 RGSM=PawXElliot-99-9-22
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-23.bam O=$result/PawXElliot-99-9-23_a.bam RGID=PawXElliot-99-9-23 RGLB=PawXElliot-99-9-23 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-23 RGSM=PawXElliot-99-9-23
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-24.bam O=$result/PawXElliot-99-9-24_a.bam RGID=PawXElliot-99-9-24 RGLB=PawXElliot-99-9-24 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-24 RGSM=PawXElliot-99-9-24
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-25.bam O=$result/PawXElliot-99-9-25_a.bam RGID=PawXElliot-99-9-25 RGLB=PawXElliot-99-9-25 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-25 RGSM=PawXElliot-99-9-25
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-26.bam O=$result/PawXElliot-99-9-26_a.bam RGID=PawXElliot-99-9-26 RGLB=PawXElliot-99-9-26 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-26 RGSM=PawXElliot-99-9-26
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-27.bam O=$result/PawXElliot-99-9-27_a.bam RGID=PawXElliot-99-9-27 RGLB=PawXElliot-99-9-27 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-27 RGSM=PawXElliot-99-9-27
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-28.bam O=$result/PawXElliot-99-9-28_a.bam RGID=PawXElliot-99-9-28 RGLB=PawXElliot-99-9-28 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-28 RGSM=PawXElliot-99-9-28
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-29.bam O=$result/PawXElliot-99-9-29_a.bam RGID=PawXElliot-99-9-29 RGLB=PawXElliot-99-9-29 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-29 RGSM=PawXElliot-99-9-29
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-2.bam O=$result/PawXElliot-99-9-2_a.bam RGID=PawXElliot-99-9-2 RGLB=PawXElliot-99-9-2 RGPL=ILLUMINA RGPU=PawXEllio
+t-99-9-2 RGSM=PawXElliot-99-9-2
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-30.bam O=$result/PawXElliot-99-9-30_a.bam RGID=PawXElliot-99-9-30 RGLB=PawXElliot-99-9-30 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-30 RGSM=PawXElliot-99-9-30
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-31.bam O=$result/PawXElliot-99-9-31_a.bam RGID=PawXElliot-99-9-31 RGLB=PawXElliot-99-9-31 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-31 RGSM=PawXElliot-99-9-31
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-32.bam O=$result/PawXElliot-99-9-32_a.bam RGID=PawXElliot-99-9-32 RGLB=PawXElliot-99-9-32 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-32 RGSM=PawXElliot-99-9-32
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-33.bam O=$result/PawXElliot-99-9-33_a.bam RGID=PawXElliot-99-9-33 RGLB=PawXElliot-99-9-33 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-33 RGSM=PawXElliot-99-9-33
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-34.bam O=$result/PawXElliot-99-9-34_a.bam RGID=PawXElliot-99-9-34 RGLB=PawXElliot-99-9-34 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-34 RGSM=PawXElliot-99-9-34
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-35.bam O=$result/PawXElliot-99-9-35_a.bam RGID=PawXElliot-99-9-35 RGLB=PawXElliot-99-9-35 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-35 RGSM=PawXElliot-99-9-35
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-36.bam O=$result/PawXElliot-99-9-36_a.bam RGID=PawXElliot-99-9-36 RGLB=PawXElliot-99-9-36 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-36 RGSM=PawXElliot-99-9-36
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-37.bam O=$result/PawXElliot-99-9-37_a.bam RGID=PawXElliot-99-9-37 RGLB=PawXElliot-99-9-37 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-37 RGSM=PawXElliot-99-9-37
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-38.bam O=$result/PawXElliot-99-9-38_a.bam RGID=PawXElliot-99-9-38 RGLB=PawXElliot-99-9-38 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-38 RGSM=PawXElliot-99-9-38
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-39.bam O=$result/PawXElliot-99-9-39_a.bam RGID=PawXElliot-99-9-39 RGLB=PawXElliot-99-9-39 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-39 RGSM=PawXElliot-99-9-39
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-3.bam O=$result/PawXElliot-99-9-3_a.bam RGID=PawXElliot-99-9-3 RGLB=PawXElliot-99-9-3 RGPL=ILLUMINA RGPU=PawXEllio
+t-99-9-3 RGSM=PawXElliot-99-9-3
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-40.bam O=$result/PawXElliot-99-9-40_a.bam RGID=PawXElliot-99-9-40 RGLB=PawXElliot-99-9-40 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-40 RGSM=PawXElliot-99-9-40
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-41.bam O=$result/PawXElliot-99-9-41_a.bam RGID=PawXElliot-99-9-41 RGLB=PawXElliot-99-9-41 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-41 RGSM=PawXElliot-99-9-41
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-42.bam O=$result/PawXElliot-99-9-42_a.bam RGID=PawXElliot-99-9-42 RGLB=PawXElliot-99-9-42 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-42 RGSM=PawXElliot-99-9-42
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-43.bam O=$result/PawXElliot-99-9-43_a.bam RGID=PawXElliot-99-9-43 RGLB=PawXElliot-99-9-43 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-43 RGSM=PawXElliot-99-9-43
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-44.bam O=$result/PawXElliot-99-9-44_a.bam RGID=PawXElliot-99-9-44 RGLB=PawXElliot-99-9-44 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-44 RGSM=PawXElliot-99-9-44
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-45.bam O=$result/PawXElliot-99-9-45_a.bam RGID=PawXElliot-99-9-45 RGLB=PawXElliot-99-9-45 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-45 RGSM=PawXElliot-99-9-45
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-46.bam O=$result/PawXElliot-99-9-46_a.bam RGID=PawXElliot-99-9-46 RGLB=PawXElliot-99-9-46 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-46 RGSM=PawXElliot-99-9-46
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-47.bam O=$result/PawXElliot-99-9-47_a.bam RGID=PawXElliot-99-9-47 RGLB=PawXElliot-99-9-47 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-47 RGSM=PawXElliot-99-9-47
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-48.bam O=$result/PawXElliot-99-9-48_a.bam RGID=PawXElliot-99-9-48 RGLB=PawXElliot-99-9-48 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-48 RGSM=PawXElliot-99-9-48
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-49.bam O=$result/PawXElliot-99-9-49_a.bam RGID=PawXElliot-99-9-49 RGLB=PawXElliot-99-9-49 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-49 RGSM=PawXElliot-99-9-49
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-4.bam O=$result/PawXElliot-99-9-4_a.bam RGID=PawXElliot-99-9-4 RGLB=PawXElliot-99-9-4 RGPL=ILLUMINA RGPU=PawXEllio
+t-99-9-4 RGSM=PawXElliot-99-9-4
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-50.bam O=$result/PawXElliot-99-9-50_a.bam RGID=PawXElliot-99-9-50 RGLB=PawXElliot-99-9-50 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-50 RGSM=PawXElliot-99-9-50
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-51.bam O=$result/PawXElliot-99-9-51_a.bam RGID=PawXElliot-99-9-51 RGLB=PawXElliot-99-9-51 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-51 RGSM=PawXElliot-99-9-51
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-52.bam O=$result/PawXElliot-99-9-52_a.bam RGID=PawXElliot-99-9-52 RGLB=PawXElliot-99-9-52 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-52 RGSM=PawXElliot-99-9-52
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-53.bam O=$result/PawXElliot-99-9-53_a.bam RGID=PawXElliot-99-9-53 RGLB=PawXElliot-99-9-53 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-53 RGSM=PawXElliot-99-9-53
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-54.bam O=$result/PawXElliot-99-9-54_a.bam RGID=PawXElliot-99-9-54 RGLB=PawXElliot-99-9-54 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-54 RGSM=PawXElliot-99-9-54
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-55.bam O=$result/PawXElliot-99-9-55_a.bam RGID=PawXElliot-99-9-55 RGLB=PawXElliot-99-9-55 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-55 RGSM=PawXElliot-99-9-55
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-56.bam O=$result/PawXElliot-99-9-56_a.bam RGID=PawXElliot-99-9-56 RGLB=PawXElliot-99-9-56 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-56 RGSM=PawXElliot-99-9-56
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-57.bam O=$result/PawXElliot-99-9-57_a.bam RGID=PawXElliot-99-9-57 RGLB=PawXElliot-99-9-57 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-57 RGSM=PawXElliot-99-9-57
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-58.bam O=$result/PawXElliot-99-9-58_a.bam RGID=PawXElliot-99-9-58 RGLB=PawXElliot-99-9-58 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-58 RGSM=PawXElliot-99-9-58
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-59.bam O=$result/PawXElliot-99-9-59_a.bam RGID=PawXElliot-99-9-59 RGLB=PawXElliot-99-9-59 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-59 RGSM=PawXElliot-99-9-59
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-5.bam O=$result/PawXElliot-99-9-5_a.bam RGID=PawXElliot-99-9-5 RGLB=PawXElliot-99-9-5 RGPL=ILLUMINA RGPU=PawXEllio
+t-99-9-5 RGSM=PawXElliot-99-9-5
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-60.bam O=$result/PawXElliot-99-9-60_a.bam RGID=PawXElliot-99-9-60 RGLB=PawXElliot-99-9-60 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-60 RGSM=PawXElliot-99-9-60
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-61.bam O=$result/PawXElliot-99-9-61_a.bam RGID=PawXElliot-99-9-61 RGLB=PawXElliot-99-9-61 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-61 RGSM=PawXElliot-99-9-61
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-62.bam O=$result/PawXElliot-99-9-62_a.bam RGID=PawXElliot-99-9-62 RGLB=PawXElliot-99-9-62 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-62 RGSM=PawXElliot-99-9-62
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-63.bam O=$result/PawXElliot-99-9-63_a.bam RGID=PawXElliot-99-9-63 RGLB=PawXElliot-99-9-63 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-63 RGSM=PawXElliot-99-9-63
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-64.bam O=$result/PawXElliot-99-9-64_a.bam RGID=PawXElliot-99-9-64 RGLB=PawXElliot-99-9-64 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-64 RGSM=PawXElliot-99-9-64
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-65.bam O=$result/PawXElliot-99-9-65_a.bam RGID=PawXElliot-99-9-65 RGLB=PawXElliot-99-9-65 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-65 RGSM=PawXElliot-99-9-65
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-66.bam O=$result/PawXElliot-99-9-66_a.bam RGID=PawXElliot-99-9-66 RGLB=PawXElliot-99-9-66 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-66 RGSM=PawXElliot-99-9-66
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-68.bam O=$result/PawXElliot-99-9-68_a.bam RGID=PawXElliot-99-9-68 RGLB=PawXElliot-99-9-68 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-68 RGSM=PawXElliot-99-9-68
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-69.bam O=$result/PawXElliot-99-9-69_a.bam RGID=PawXElliot-99-9-69 RGLB=PawXElliot-99-9-69 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-69 RGSM=PawXElliot-99-9-69
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-6.bam O=$result/PawXElliot-99-9-6_a.bam RGID=PawXElliot-99-9-6 RGLB=PawXElliot-99-9-6 RGPL=ILLUMINA RGPU=PawXEllio
+t-99-9-6 RGSM=PawXElliot-99-9-6
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-70.bam O=$result/PawXElliot-99-9-70_a.bam RGID=PawXElliot-99-9-70 RGLB=PawXElliot-99-9-70 RGPL=ILLUMINA RGPU=PawXE
+lliot-99-9-70 RGSM=PawXElliot-99-9-70
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-7.bam O=$result/PawXElliot-99-9-7_a.bam RGID=PawXElliot-99-9-7 RGLB=PawXElliot-99-9-7 RGPL=ILLUMINA RGPU=PawXEllio
+t-99-9-7 RGSM=PawXElliot-99-9-7
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-99-9-8.bam O=$result/PawXElliot-99-9-8_a.bam RGID=PawXElliot-99-9-8 RGLB=PawXElliot-99-9-8 RGPL=ILLUMINA RGPU=PawXEllio
+t-99-9-8 RGSM=PawXElliot-99-9-8
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW10.bam O=$result/PawXElliot-BW10_a.bam RGID=PawXElliot-BW10 RGLB=PawXElliot-BW10 RGPL=ILLUMINA RGPU=PawXElliot-BW10 R
+GSM=PawXElliot-BW10
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW11.bam O=$result/PawXElliot-BW11_a.bam RGID=PawXElliot-BW11 RGLB=PawXElliot-BW11 RGPL=ILLUMINA RGPU=PawXElliot-BW11 R
+GSM=PawXElliot-BW11
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW12.bam O=$result/PawXElliot-BW12_a.bam RGID=PawXElliot-BW12 RGLB=PawXElliot-BW12 RGPL=ILLUMINA RGPU=PawXElliot-BW12 R
+GSM=PawXElliot-BW12
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW13.bam O=$result/PawXElliot-BW13_a.bam RGID=PawXElliot-BW13 RGLB=PawXElliot-BW13 RGPL=ILLUMINA RGPU=PawXElliot-BW13 R
+GSM=PawXElliot-BW13
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW14.bam O=$result/PawXElliot-BW14_a.bam RGID=PawXElliot-BW14 RGLB=PawXElliot-BW14 RGPL=ILLUMINA RGPU=PawXElliot-BW14 R
+GSM=PawXElliot-BW14
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW15.bam O=$result/PawXElliot-BW15_a.bam RGID=PawXElliot-BW15 RGLB=PawXElliot-BW15 RGPL=ILLUMINA RGPU=PawXElliot-BW15 R
+GSM=PawXElliot-BW15
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW16.bam O=$result/PawXElliot-BW16_a.bam RGID=PawXElliot-BW16 RGLB=PawXElliot-BW16 RGPL=ILLUMINA RGPU=PawXElliot-BW16 R
+GSM=PawXElliot-BW16
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW17.bam O=$result/PawXElliot-BW17_a.bam RGID=PawXElliot-BW17 RGLB=PawXElliot-BW17 RGPL=ILLUMINA RGPU=PawXElliot-BW17 R
+GSM=PawXElliot-BW17
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW18.bam O=$result/PawXElliot-BW18_a.bam RGID=PawXElliot-BW18 RGLB=PawXElliot-BW18 RGPL=ILLUMINA RGPU=PawXElliot-BW18 R
+GSM=PawXElliot-BW18
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW19.bam O=$result/PawXElliot-BW19_a.bam RGID=PawXElliot-BW19 RGLB=PawXElliot-BW19 RGPL=ILLUMINA RGPU=PawXElliot-BW19 R
+GSM=PawXElliot-BW19
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW1.bam O=$result/PawXElliot-BW1_a.bam RGID=PawXElliot-BW1 RGLB=PawXElliot-BW1 RGPL=ILLUMINA RGPU=PawXElliot-BW1 RGSM=P
+awXElliot-BW1
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW20.bam O=$result/PawXElliot-BW20_a.bam RGID=PawXElliot-BW20 RGLB=PawXElliot-BW20 RGPL=ILLUMINA RGPU=PawXElliot-BW20 R
+GSM=PawXElliot-BW20
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW21.bam O=$result/PawXElliot-BW21_a.bam RGID=PawXElliot-BW21 RGLB=PawXElliot-BW21 RGPL=ILLUMINA RGPU=PawXElliot-BW21 R
+GSM=PawXElliot-BW21
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW22.bam O=$result/PawXElliot-BW22_a.bam RGID=PawXElliot-BW22 RGLB=PawXElliot-BW22 RGPL=ILLUMINA RGPU=PawXElliot-BW22 R
+GSM=PawXElliot-BW22
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW23.bam O=$result/PawXElliot-BW23_a.bam RGID=PawXElliot-BW23 RGLB=PawXElliot-BW23 RGPL=ILLUMINA RGPU=PawXElliot-BW23 R
+GSM=PawXElliot-BW23
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW24.bam O=$result/PawXElliot-BW24_a.bam RGID=PawXElliot-BW24 RGLB=PawXElliot-BW24 RGPL=ILLUMINA RGPU=PawXElliot-BW24 R
+GSM=PawXElliot-BW24
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW25.bam O=$result/PawXElliot-BW25_a.bam RGID=PawXElliot-BW25 RGLB=PawXElliot-BW25 RGPL=ILLUMINA RGPU=PawXElliot-BW25 R
+GSM=PawXElliot-BW25
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW26.bam O=$result/PawXElliot-BW26_a.bam RGID=PawXElliot-BW26 RGLB=PawXElliot-BW26 RGPL=ILLUMINA RGPU=PawXElliot-BW26 R
+GSM=PawXElliot-BW26
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW27.bam O=$result/PawXElliot-BW27_a.bam RGID=PawXElliot-BW27 RGLB=PawXElliot-BW27 RGPL=ILLUMINA RGPU=PawXElliot-BW27 R
+GSM=PawXElliot-BW27
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW28.bam O=$result/PawXElliot-BW28_a.bam RGID=PawXElliot-BW28 RGLB=PawXElliot-BW28 RGPL=ILLUMINA RGPU=PawXElliot-BW28 R
+GSM=PawXElliot-BW28
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW29.bam O=$result/PawXElliot-BW29_a.bam RGID=PawXElliot-BW29 RGLB=PawXElliot-BW29 RGPL=ILLUMINA RGPU=PawXElliot-BW29 R
+GSM=PawXElliot-BW29
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW2.bam O=$result/PawXElliot-BW2_a.bam RGID=PawXElliot-BW2 RGLB=PawXElliot-BW2 RGPL=ILLUMINA RGPU=PawXElliot-BW2 RGSM=P
+awXElliot-BW2
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW30.bam O=$result/PawXElliot-BW30_a.bam RGID=PawXElliot-BW30 RGLB=PawXElliot-BW30 RGPL=ILLUMINA RGPU=PawXElliot-BW30 R
+GSM=PawXElliot-BW30
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW31.bam O=$result/PawXElliot-BW31_a.bam RGID=PawXElliot-BW31 RGLB=PawXElliot-BW31 RGPL=ILLUMINA RGPU=PawXElliot-BW31 R
+GSM=PawXElliot-BW31
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW32.bam O=$result/PawXElliot-BW32_a.bam RGID=PawXElliot-BW32 RGLB=PawXElliot-BW32 RGPL=ILLUMINA RGPU=PawXElliot-BW32 R
+GSM=PawXElliot-BW32
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW33.bam O=$result/PawXElliot-BW33_a.bam RGID=PawXElliot-BW33 RGLB=PawXElliot-BW33 RGPL=ILLUMINA RGPU=PawXElliot-BW33 R
+GSM=PawXElliot-BW33
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW34.bam O=$result/PawXElliot-BW34_a.bam RGID=PawXElliot-BW34 RGLB=PawXElliot-BW34 RGPL=ILLUMINA RGPU=PawXElliot-BW34 R
+GSM=PawXElliot-BW34
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW35.bam O=$result/PawXElliot-BW35_a.bam RGID=PawXElliot-BW35 RGLB=PawXElliot-BW35 RGPL=ILLUMINA RGPU=PawXElliot-BW35 R
+GSM=PawXElliot-BW35
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW36.bam O=$result/PawXElliot-BW36_a.bam RGID=PawXElliot-BW36 RGLB=PawXElliot-BW36 RGPL=ILLUMINA RGPU=PawXElliot-BW36 R
+GSM=PawXElliot-BW36
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW37.bam O=$result/PawXElliot-BW37_a.bam RGID=PawXElliot-BW37 RGLB=PawXElliot-BW37 RGPL=ILLUMINA RGPU=PawXElliot-BW37 R
+GSM=PawXElliot-BW37
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW38.bam O=$result/PawXElliot-BW38_a.bam RGID=PawXElliot-BW38 RGLB=PawXElliot-BW38 RGPL=ILLUMINA RGPU=PawXElliot-BW38 R
+GSM=PawXElliot-BW38
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW39.bam O=$result/PawXElliot-BW39_a.bam RGID=PawXElliot-BW39 RGLB=PawXElliot-BW39 RGPL=ILLUMINA RGPU=PawXElliot-BW39 R
+GSM=PawXElliot-BW39
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW3.bam O=$result/PawXElliot-BW3_a.bam RGID=PawXElliot-BW3 RGLB=PawXElliot-BW3 RGPL=ILLUMINA RGPU=PawXElliot-BW3 RGSM=P
+awXElliot-BW3
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW40.bam O=$result/PawXElliot-BW40_a.bam RGID=PawXElliot-BW40 RGLB=PawXElliot-BW40 RGPL=ILLUMINA RGPU=PawXElliot-BW40 R
+GSM=PawXElliot-BW40
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW41.bam O=$result/PawXElliot-BW41_a.bam RGID=PawXElliot-BW41 RGLB=PawXElliot-BW41 RGPL=ILLUMINA RGPU=PawXElliot-BW41 R
+GSM=PawXElliot-BW41
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW42.bam O=$result/PawXElliot-BW42_a.bam RGID=PawXElliot-BW42 RGLB=PawXElliot-BW42 RGPL=ILLUMINA RGPU=PawXElliot-BW42 R
+GSM=PawXElliot-BW42
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW43.bam O=$result/PawXElliot-BW43_a.bam RGID=PawXElliot-BW43 RGLB=PawXElliot-BW43 RGPL=ILLUMINA RGPU=PawXElliot-BW43 R
+GSM=PawXElliot-BW43
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW44.bam O=$result/PawXElliot-BW44_a.bam RGID=PawXElliot-BW44 RGLB=PawXElliot-BW44 RGPL=ILLUMINA RGPU=PawXElliot-BW44 R
+GSM=PawXElliot-BW44
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW45.bam O=$result/PawXElliot-BW45_a.bam RGID=PawXElliot-BW45 RGLB=PawXElliot-BW45 RGPL=ILLUMINA RGPU=PawXElliot-BW45 R
+GSM=PawXElliot-BW45
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW46.bam O=$result/PawXElliot-BW46_a.bam RGID=PawXElliot-BW46 RGLB=PawXElliot-BW46 RGPL=ILLUMINA RGPU=PawXElliot-BW46 R
+GSM=PawXElliot-BW46
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW48.bam O=$result/PawXElliot-BW48_a.bam RGID=PawXElliot-BW48 RGLB=PawXElliot-BW48 RGPL=ILLUMINA RGPU=PawXElliot-BW48 R
+GSM=PawXElliot-BW48
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW49.bam O=$result/PawXElliot-BW49_a.bam RGID=PawXElliot-BW49 RGLB=PawXElliot-BW49 RGPL=ILLUMINA RGPU=PawXElliot-BW49 R
+GSM=PawXElliot-BW49
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW4.bam O=$result/PawXElliot-BW4_a.bam RGID=PawXElliot-BW4 RGLB=PawXElliot-BW4 RGPL=ILLUMINA RGPU=PawXElliot-BW4 RGSM=P
+awXElliot-BW4
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW50.bam O=$result/PawXElliot-BW50_a.bam RGID=PawXElliot-BW50 RGLB=PawXElliot-BW50 RGPL=ILLUMINA RGPU=PawXElliot-BW50 R
+GSM=PawXElliot-BW50
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW51.bam O=$result/PawXElliot-BW51_a.bam RGID=PawXElliot-BW51 RGLB=PawXElliot-BW51 RGPL=ILLUMINA RGPU=PawXElliot-BW51 R
+GSM=PawXElliot-BW51
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW52.bam O=$result/PawXElliot-BW52_a.bam RGID=PawXElliot-BW52 RGLB=PawXElliot-BW52 RGPL=ILLUMINA RGPU=PawXElliot-BW52 R
+GSM=PawXElliot-BW52
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW53.bam O=$result/PawXElliot-BW53_a.bam RGID=PawXElliot-BW53 RGLB=PawXElliot-BW53 RGPL=ILLUMINA RGPU=PawXElliot-BW53 R
+GSM=PawXElliot-BW53
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW54.bam O=$result/PawXElliot-BW54_a.bam RGID=PawXElliot-BW54 RGLB=PawXElliot-BW54 RGPL=ILLUMINA RGPU=PawXElliot-BW54 R
+GSM=PawXElliot-BW54
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW55.bam O=$result/PawXElliot-BW55_a.bam RGID=PawXElliot-BW55 RGLB=PawXElliot-BW55 RGPL=ILLUMINA RGPU=PawXElliot-BW55 R
+GSM=PawXElliot-BW55
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW56.bam O=$result/PawXElliot-BW56_a.bam RGID=PawXElliot-BW56 RGLB=PawXElliot-BW56 RGPL=ILLUMINA RGPU=PawXElliot-BW56 R
+GSM=PawXElliot-BW56
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW5.bam O=$result/PawXElliot-BW5_a.bam RGID=PawXElliot-BW5 RGLB=PawXElliot-BW5 RGPL=ILLUMINA RGPU=PawXElliot-BW5 RGSM=P
+awXElliot-BW5
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW6.bam O=$result/PawXElliot-BW6_a.bam RGID=PawXElliot-BW6 RGLB=PawXElliot-BW6 RGPL=ILLUMINA RGPU=PawXElliot-BW6 RGSM=P
+awXElliot-BW6
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW7.bam O=$result/PawXElliot-BW7_a.bam RGID=PawXElliot-BW7 RGLB=PawXElliot-BW7 RGPL=ILLUMINA RGPU=PawXElliot-BW7 RGSM=P
+awXElliot-BW7
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW8.bam O=$result/PawXElliot-BW8_a.bam RGID=PawXElliot-BW8 RGLB=PawXElliot-BW8 RGPL=ILLUMINA RGPU=PawXElliot-BW8 RGSM=P
+awXElliot-BW8
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups  I=$data/PawXElliot-BW9.bam O=$result/PawXElliot-BW9_a.bam RGID=PawXElliot-BW9 RGLB=PawXElliot-BW9 RGPL=ILLUMINA RGPU=PawXElliot-BW9 RGSM=P
+awXElliot-BW9
