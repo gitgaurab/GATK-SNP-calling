@@ -1,0 +1,294 @@
+#!/bin/bash
+#SBATCH --job-name=bwa_mem         # Job name
+#SBATCH --partition=highmem_p             # Partition (queue) name
+#SBATCH --ntasks=1                    # Run on a single CPU
+#SBATCH --mem=400gb                     # Job memory request
+#SBATCH --time=150:00:00               # Time limit hrs:min:sec
+#SBATCH --output=log.%j.out    # Standard output log
+#SBATCH --error=log.%j.err     # Standard error log
+
+#SBATCH --mail-type=END,FAIL          # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=gb92068@uga.edu  # Where to send mail
+
+cd $SLURM_SUBMIT_DIR
+
+index_elliott='/home/gb92068/GATK_GBS_Pawnee_Elliott/index_elliott'
+demultiplex='/home/gb92068/GATK_GBS_Pawnee_Elliott/result/demultiplexed'
+result='/home/gb92068/GATK_GBS_Pawnee_Elliott/result'
+
+##Index the genome
+
+#ml BWA/0.7.17-GCC-8.3.0
+
+#time bwa index $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa
+
+##Index with picard tools
+
+#ml picard/2.16.0-Java-1.8.0_144
+
+#java -Xmx2g -jar $EBROOTPICARD/picard.jar CreateSequenceDictionary R=$index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa
+
+##Index with SAMtools
+
+#ml SAMtools/1.10-iccifort-2019.5.281
+
+#time samtools faidx $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa
+
+##Run the alignment for each sample
+
+ml BWA/0.7.17-GCC-8.3.0
+
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-10.fq.gz> $result/Elliott/sam/PawXElliot-99-9-10.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-11.fq.gz> $result/Elliott/sam/PawXElliot-99-9-11.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-12.fq.gz> $result/Elliott/sam/PawXElliot-99-9-12.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-13.fq.gz> $result/Elliott/sam/PawXElliot-99-9-13.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-14.fq.gz> $result/Elliott/sam/PawXElliot-99-9-14.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-15.fq.gz> $result/Elliott/sam/PawXElliot-99-9-15.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-16.fq.gz> $result/Elliott/sam/PawXElliot-99-9-16.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-18.fq.gz> $result/Elliott/sam/PawXElliot-99-9-18.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-19.fq.gz> $result/Elliott/sam/PawXElliot-99-9-19.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-1.fq.gz> $result/Elliott/sam/PawXElliot-99-9-1.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-20.fq.gz> $result/Elliott/sam/PawXElliot-99-9-20.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-21.fq.gz> $result/Elliott/sam/PawXElliot-99-9-21.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-22.fq.gz> $result/Elliott/sam/PawXElliot-99-9-22.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-23.fq.gz> $result/Elliott/sam/PawXElliot-99-9-23.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-24.fq.gz> $result/Elliott/sam/PawXElliot-99-9-24.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-25.fq.gz> $result/Elliott/sam/PawXElliot-99-9-25.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-26.fq.gz> $result/Elliott/sam/PawXElliot-99-9-26.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-27.fq.gz> $result/Elliott/sam/PawXElliot-99-9-27.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-28.fq.gz> $result/Elliott/sam/PawXElliot-99-9-28.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-29.fq.gz> $result/Elliott/sam/PawXElliot-99-9-29.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-2.fq.gz> $result/Elliott/sam/PawXElliot-99-9-2.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-30.fq.gz> $result/Elliott/sam/PawXElliot-99-9-30.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-31.fq.gz> $result/Elliott/sam/PawXElliot-99-9-31.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-32.fq.gz> $result/Elliott/sam/PawXElliot-99-9-32.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-33.fq.gz> $result/Elliott/sam/PawXElliot-99-9-33.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-34.fq.gz> $result/Elliott/sam/PawXElliot-99-9-34.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-35.fq.gz> $result/Elliott/sam/PawXElliot-99-9-35.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-36.fq.gz> $result/Elliott/sam/PawXElliot-99-9-36.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-37.fq.gz> $result/Elliott/sam/PawXElliot-99-9-37.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-38.fq.gz> $result/Elliott/sam/PawXElliot-99-9-38.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-39.fq.gz> $result/Elliott/sam/PawXElliot-99-9-39.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-3.fq.gz> $result/Elliott/sam/PawXElliot-99-9-3.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-40.fq.gz> $result/Elliott/sam/PawXElliot-99-9-40.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-41.fq.gz> $result/Elliott/sam/PawXElliot-99-9-41.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-42.fq.gz> $result/Elliott/sam/PawXElliot-99-9-42.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-43.fq.gz> $result/Elliott/sam/PawXElliot-99-9-43.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-44.fq.gz> $result/Elliott/sam/PawXElliot-99-9-44.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-45.fq.gz> $result/Elliott/sam/PawXElliot-99-9-45.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-46.fq.gz> $result/Elliott/sam/PawXElliot-99-9-46.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-47.fq.gz> $result/Elliott/sam/PawXElliot-99-9-47.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-48.fq.gz> $result/Elliott/sam/PawXElliot-99-9-48.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-49.fq.gz> $result/Elliott/sam/PawXElliot-99-9-49.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-4.fq.gz> $result/Elliott/sam/PawXElliot-99-9-4.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-50.fq.gz> $result/Elliott/sam/PawXElliot-99-9-50.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-51.fq.gz> $result/Elliott/sam/PawXElliot-99-9-51.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-52.fq.gz> $result/Elliott/sam/PawXElliot-99-9-52.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-53.fq.gz> $result/Elliott/sam/PawXElliot-99-9-53.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-54.fq.gz> $result/Elliott/sam/PawXElliot-99-9-54.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-55.fq.gz> $result/Elliott/sam/PawXElliot-99-9-55.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-56.fq.gz> $result/Elliott/sam/PawXElliot-99-9-56.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-57.fq.gz> $result/Elliott/sam/PawXElliot-99-9-57.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-58.fq.gz> $result/Elliott/sam/PawXElliot-99-9-58.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-59.fq.gz> $result/Elliott/sam/PawXElliot-99-9-59.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-5.fq.gz> $result/Elliott/sam/PawXElliot-99-9-5.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-60.fq.gz> $result/Elliott/sam/PawXElliot-99-9-60.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-61.fq.gz> $result/Elliott/sam/PawXElliot-99-9-61.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-62.fq.gz> $result/Elliott/sam/PawXElliot-99-9-62.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-63.fq.gz> $result/Elliott/sam/PawXElliot-99-9-63.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-64.fq.gz> $result/Elliott/sam/PawXElliot-99-9-64.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-65.fq.gz> $result/Elliott/sam/PawXElliot-99-9-65.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-66.fq.gz> $result/Elliott/sam/PawXElliot-99-9-66.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-68.fq.gz> $result/Elliott/sam/PawXElliot-99-9-68.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-69.fq.gz> $result/Elliott/sam/PawXElliot-99-9-69.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-6.fq.gz> $result/Elliott/sam/PawXElliot-99-9-6.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-70.fq.gz> $result/Elliott/sam/PawXElliot-99-9-70.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-7.fq.gz> $result/Elliott/sam/PawXElliot-99-9-7.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-99-9-8.fq.gz> $result/Elliott/sam/PawXElliot-99-9-8.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW10.fq.gz> $result/Elliott/sam/PawXElliot-BW10.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW11.fq.gz> $result/Elliott/sam/PawXElliot-BW11.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW12.fq.gz> $result/Elliott/sam/PawXElliot-BW12.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW13.fq.gz> $result/Elliott/sam/PawXElliot-BW13.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW14.fq.gz> $result/Elliott/sam/PawXElliot-BW14.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW15.fq.gz> $result/Elliott/sam/PawXElliot-BW15.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW16.fq.gz> $result/Elliott/sam/PawXElliot-BW16.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW17.fq.gz> $result/Elliott/sam/PawXElliot-BW17.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW18.fq.gz> $result/Elliott/sam/PawXElliot-BW18.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW19.fq.gz> $result/Elliott/sam/PawXElliot-BW19.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW1.fq.gz> $result/Elliott/sam/PawXElliot-BW1.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW20.fq.gz> $result/Elliott/sam/PawXElliot-BW20.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW21.fq.gz> $result/Elliott/sam/PawXElliot-BW21.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW22.fq.gz> $result/Elliott/sam/PawXElliot-BW22.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW23.fq.gz> $result/Elliott/sam/PawXElliot-BW23.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW24.fq.gz> $result/Elliott/sam/PawXElliot-BW24.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW25.fq.gz> $result/Elliott/sam/PawXElliot-BW25.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW26.fq.gz> $result/Elliott/sam/PawXElliot-BW26.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW27.fq.gz> $result/Elliott/sam/PawXElliot-BW27.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW28.fq.gz> $result/Elliott/sam/PawXElliot-BW28.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW29.fq.gz> $result/Elliott/sam/PawXElliot-BW29.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW2.fq.gz> $result/Elliott/sam/PawXElliot-BW2.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW30.fq.gz> $result/Elliott/sam/PawXElliot-BW30.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW31.fq.gz> $result/Elliott/sam/PawXElliot-BW31.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW32.fq.gz> $result/Elliott/sam/PawXElliot-BW32.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW33.fq.gz> $result/Elliott/sam/PawXElliot-BW33.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW34.fq.gz> $result/Elliott/sam/PawXElliot-BW34.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW35.fq.gz> $result/Elliott/sam/PawXElliot-BW35.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW36.fq.gz> $result/Elliott/sam/PawXElliot-BW36.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW37.fq.gz> $result/Elliott/sam/PawXElliot-BW37.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW38.fq.gz> $result/Elliott/sam/PawXElliot-BW38.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW39.fq.gz> $result/Elliott/sam/PawXElliot-BW39.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW3.fq.gz> $result/Elliott/sam/PawXElliot-BW3.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW40.fq.gz> $result/Elliott/sam/PawXElliot-BW40.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW41.fq.gz> $result/Elliott/sam/PawXElliot-BW41.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW42.fq.gz> $result/Elliott/sam/PawXElliot-BW42.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW43.fq.gz> $result/Elliott/sam/PawXElliot-BW43.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW44.fq.gz> $result/Elliott/sam/PawXElliot-BW44.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW45.fq.gz> $result/Elliott/sam/PawXElliot-BW45.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW46.fq.gz> $result/Elliott/sam/PawXElliot-BW46.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW48.fq.gz> $result/Elliott/sam/PawXElliot-BW48.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW49.fq.gz> $result/Elliott/sam/PawXElliot-BW49.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW4.fq.gz> $result/Elliott/sam/PawXElliot-BW4.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW50.fq.gz> $result/Elliott/sam/PawXElliot-BW50.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW51.fq.gz> $result/Elliott/sam/PawXElliot-BW51.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW52.fq.gz> $result/Elliott/sam/PawXElliot-BW52.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW53.fq.gz> $result/Elliott/sam/PawXElliot-BW53.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW54.fq.gz> $result/Elliott/sam/PawXElliot-BW54.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW55.fq.gz> $result/Elliott/sam/PawXElliot-BW55.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW56.fq.gz> $result/Elliott/sam/PawXElliot-BW56.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW5.fq.gz> $result/Elliott/sam/PawXElliot-BW5.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW6.fq.gz> $result/Elliott/sam/PawXElliot-BW6.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW7.fq.gz> $result/Elliott/sam/PawXElliot-BW7.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW8.fq.gz> $result/Elliott/sam/PawXElliot-BW8.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/PawXElliot-BW9.fq.gz> $result/Elliott/sam/PawXElliot-BW9.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/Elliott.fq.gz> $result/Elliott/sam/Elliott.sam
+time bwa mem -v 2 -M -t 10 $index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa $demultiplex/Pawnee.fq.gz> $result/Elliott/sam/Pawnee.sam
+
+
+##Convert SAM to BAM
+
+ml SAMtools/1.10-iccifort-2019.5.281
+
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-10.bam $result/Elliott/sam/PawXElliot-99-9-10.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-11.bam $result/Elliott/sam/PawXElliot-99-9-11.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-12.bam $result/Elliott/sam/PawXElliot-99-9-12.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-13.bam $result/Elliott/sam/PawXElliot-99-9-13.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-14.bam $result/Elliott/sam/PawXElliot-99-9-14.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-15.bam $result/Elliott/sam/PawXElliot-99-9-15.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-16.bam $result/Elliott/sam/PawXElliot-99-9-16.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-18.bam $result/Elliott/sam/PawXElliot-99-9-18.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-19.bam $result/Elliott/sam/PawXElliot-99-9-19.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-1.bam $result/Elliott/sam/PawXElliot-99-9-1.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-20.bam $result/Elliott/sam/PawXElliot-99-9-20.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-21.bam $result/Elliott/sam/PawXElliot-99-9-21.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-22.bam $result/Elliott/sam/PawXElliot-99-9-22.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-23.bam $result/Elliott/sam/PawXElliot-99-9-23.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-24.bam $result/Elliott/sam/PawXElliot-99-9-24.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-25.bam $result/Elliott/sam/PawXElliot-99-9-25.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-26.bam $result/Elliott/sam/PawXElliot-99-9-26.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-27.bam $result/Elliott/sam/PawXElliot-99-9-27.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-28.bam $result/Elliott/sam/PawXElliot-99-9-28.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-29.bam $result/Elliott/sam/PawXElliot-99-9-29.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-2.bam $result/Elliott/sam/PawXElliot-99-9-2.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-30.bam $result/Elliott/sam/PawXElliot-99-9-30.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-31.bam $result/Elliott/sam/PawXElliot-99-9-31.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-32.bam $result/Elliott/sam/PawXElliot-99-9-32.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-33.bam $result/Elliott/sam/PawXElliot-99-9-33.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-34.bam $result/Elliott/sam/PawXElliot-99-9-34.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-35.bam $result/Elliott/sam/PawXElliot-99-9-35.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-36.bam $result/Elliott/sam/PawXElliot-99-9-36.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-37.bam $result/Elliott/sam/PawXElliot-99-9-37.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-38.bam $result/Elliott/sam/PawXElliot-99-9-38.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-39.bam $result/Elliott/sam/PawXElliot-99-9-39.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-3.bam $result/Elliott/sam/PawXElliot-99-9-3.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-40.bam $result/Elliott/sam/PawXElliot-99-9-40.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-41.bam $result/Elliott/sam/PawXElliot-99-9-41.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-42.bam $result/Elliott/sam/PawXElliot-99-9-42.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-43.bam $result/Elliott/sam/PawXElliot-99-9-43.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-44.bam $result/Elliott/sam/PawXElliot-99-9-44.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-45.bam $result/Elliott/sam/PawXElliot-99-9-45.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-46.bam $result/Elliott/sam/PawXElliot-99-9-46.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-47.bam $result/Elliott/sam/PawXElliot-99-9-47.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-48.bam $result/Elliott/sam/PawXElliot-99-9-48.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-49.bam $result/Elliott/sam/PawXElliot-99-9-49.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-4.bam $result/Elliott/sam/PawXElliot-99-9-4.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-50.bam $result/Elliott/sam/PawXElliot-99-9-50.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-51.bam $result/Elliott/sam/PawXElliot-99-9-51.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-52.bam $result/Elliott/sam/PawXElliot-99-9-52.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-53.bam $result/Elliott/sam/PawXElliot-99-9-53.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-54.bam $result/Elliott/sam/PawXElliot-99-9-54.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-55.bam $result/Elliott/sam/PawXElliot-99-9-55.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-56.bam $result/Elliott/sam/PawXElliot-99-9-56.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-57.bam $result/Elliott/sam/PawXElliot-99-9-57.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-58.bam $result/Elliott/sam/PawXElliot-99-9-58.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-59.bam $result/Elliott/sam/PawXElliot-99-9-59.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-5.bam $result/Elliott/sam/PawXElliot-99-9-5.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-60.bam $result/Elliott/sam/PawXElliot-99-9-60.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-61.bam $result/Elliott/sam/PawXElliot-99-9-61.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-62.bam $result/Elliott/sam/PawXElliot-99-9-62.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-63.bam $result/Elliott/sam/PawXElliot-99-9-63.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-64.bam $result/Elliott/sam/PawXElliot-99-9-64.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-65.bam $result/Elliott/sam/PawXElliot-99-9-65.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-66.bam $result/Elliott/sam/PawXElliot-99-9-66.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-68.bam $result/Elliott/sam/PawXElliot-99-9-68.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-69.bam $result/Elliott/sam/PawXElliot-99-9-69.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-6.bam $result/Elliott/sam/PawXElliot-99-9-6.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-70.bam $result/Elliott/sam/PawXElliot-99-9-70.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-7.bam $result/Elliott/sam/PawXElliot-99-9-7.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-99-9-8.bam $result/Elliott/sam/PawXElliot-99-9-8.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW10.bam $result/Elliott/sam/PawXElliot-BW10.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW11.bam $result/Elliott/sam/PawXElliot-BW11.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW12.bam $result/Elliott/sam/PawXElliot-BW12.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW13.bam $result/Elliott/sam/PawXElliot-BW13.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW14.bam $result/Elliott/sam/PawXElliot-BW14.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW15.bam $result/Elliott/sam/PawXElliot-BW15.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW16.bam $result/Elliott/sam/PawXElliot-BW16.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW17.bam $result/Elliott/sam/PawXElliot-BW17.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW18.bam $result/Elliott/sam/PawXElliot-BW18.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW19.bam $result/Elliott/sam/PawXElliot-BW19.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW1.bam $result/Elliott/sam/PawXElliot-BW1.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW20.bam $result/Elliott/sam/PawXElliot-BW20.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW21.bam $result/Elliott/sam/PawXElliot-BW21.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW22.bam $result/Elliott/sam/PawXElliot-BW22.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW23.bam $result/Elliott/sam/PawXElliot-BW23.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW24.bam $result/Elliott/sam/PawXElliot-BW24.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW25.bam $result/Elliott/sam/PawXElliot-BW25.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW26.bam $result/Elliott/sam/PawXElliot-BW26.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW27.bam $result/Elliott/sam/PawXElliot-BW27.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW28.bam $result/Elliott/sam/PawXElliot-BW28.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW29.bam $result/Elliott/sam/PawXElliot-BW29.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW2.bam $result/Elliott/sam/PawXElliot-BW2.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW30.bam $result/Elliott/sam/PawXElliot-BW30.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW31.bam $result/Elliott/sam/PawXElliot-BW31.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW32.bam $result/Elliott/sam/PawXElliot-BW32.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW33.bam $result/Elliott/sam/PawXElliot-BW33.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW34.bam $result/Elliott/sam/PawXElliot-BW34.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW35.bam $result/Elliott/sam/PawXElliot-BW35.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW36.bam $result/Elliott/sam/PawXElliot-BW36.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW37.bam $result/Elliott/sam/PawXElliot-BW37.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW38.bam $result/Elliott/sam/PawXElliot-BW38.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW39.bam $result/Elliott/sam/PawXElliot-BW39.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW3.bam $result/Elliott/sam/PawXElliot-BW3.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW40.bam $result/Elliott/sam/PawXElliot-BW40.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW41.bam $result/Elliott/sam/PawXElliot-BW41.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW42.bam $result/Elliott/sam/PawXElliot-BW42.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW43.bam $result/Elliott/sam/PawXElliot-BW43.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW44.bam $result/Elliott/sam/PawXElliot-BW44.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW45.bam $result/Elliott/sam/PawXElliot-BW45.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW46.bam $result/Elliott/sam/PawXElliot-BW46.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW48.bam $result/Elliott/sam/PawXElliot-BW48.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW49.bam $result/Elliott/sam/PawXElliot-BW49.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW4.bam $result/Elliott/sam/PawXElliot-BW4.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW50.bam $result/Elliott/sam/PawXElliot-BW50.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW51.bam $result/Elliott/sam/PawXElliot-BW51.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW52.bam $result/Elliott/sam/PawXElliot-BW52.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW53.bam $result/Elliott/sam/PawXElliot-BW53.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW54.bam $result/Elliott/sam/PawXElliot-BW54.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW55.bam $result/Elliott/sam/PawXElliot-BW55.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW56.bam $result/Elliott/sam/PawXElliot-BW56.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW5.bam $result/Elliott/sam/PawXElliot-BW5.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW6.bam $result/Elliott/sam/PawXElliot-BW6.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW7.bam $result/Elliott/sam/PawXElliot-BW7.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW8.bam $result/Elliott/sam/PawXElliot-BW8.sam
+time samtools view -b -S -o $result/Elliott/bam/PawXElliot-BW9.bam $result/Elliott/sam/PawXElliot-BW9.sam
+time samtools view -b -S -o $result/Elliott/bam/Elliott.bam $result/Elliott/sam/Elliott.sam
+time samtools view -b -S -o $result/Elliott/bam/Pawnee.bam $result/Elliott/sam/Pawnee.sam
