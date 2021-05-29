@@ -1,0 +1,29 @@
+#!/bin/bash
+#SBATCH --job-name=final_vcf         # Job name
+#SBATCH --partition=batch             # Partition (queue) name
+#SBATCH --ntasks=1                    # Run on a single CPU
+#SBATCH --mem=64gb                     # Job memory request
+#SBATCH --time=124:00:00               # Time limit hrs:min:sec
+#SBATCH --output=final_vcf.%j.out    # Standard output log
+#SBATCH --error=final_vcf.%j.err     # Standard error log
+
+#SBATCH --mail-type=END,FAIL          # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=gb92068@uga.edu  # Where to send mail
+
+cd $SLURM_SUBMIT_DIR
+
+##Load the module and assign directory for sequence data and results
+
+ml GATK/4.1.6.0-GCCcore-8.3.0-Java-1.8
+
+ref='/scratch/gb92068/GATK_Pawnee_Elliott/GATK_GBS_Pawnee_Elliott/index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa'
+data='/scratch/gb92068/GATK_Pawnee_Elliott/GATK_GBS_Pawnee_Elliott/result/Elliott/combined_GVCF/'
+result='/scratch/gb92068/GATK_Pawnee_Elliott/GATK_GBS_Pawnee_Elliott/result/Elliott/final_vcf/'
+
+
+##Run the command line
+
+gatk --java-options "-Xmx60g" GenotypeGVCFs \
+-R $ref \
+-V $data/combined.g.vcf.gz \
+-O $result/final.vcf.gz
