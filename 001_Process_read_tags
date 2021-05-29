@@ -1,0 +1,25 @@
+#!/bin/bash
+#SBATCH --job-name=process_radtags_lane3         # Job name
+#SBATCH --partition=batch             # Partition (queue) name
+#SBATCH --ntasks=1                    # Run on a single CPU
+#SBATCH --mem=64gb                     # Job memory request
+#SBATCH --time=100:00:00               # Time limit hrs:min:sec
+#SBATCH --output=log.%j.out    # Standard output log
+#SBATCH --error=log.%j.err     # Standard error log
+
+#SBATCH --mail-type=END,FAIL          # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=gb92068@uga.edu  # Where to send mail
+
+cd $SLURM_SUBMIT_DIR
+
+##Load the module and assign directory for sequence data and results
+module load Stacks/2.55-foss-2019b
+
+fastq='/home/gb92068/GATK_GBS_Pawnee_Elliott/fastq'
+result='/home/gb92068/GATK_GBS_Pawnee_Elliott/result'
+
+##Run the command
+##Note fastq files needs to have word R1 (for single end) in the file name
+##Two files were renamed as CAL35ANXX_L003_R1_001.fastq and CAL35ANXX_L004_R1_001.fastq
+process_radtags -p $fastq/lane3/ -o $result/demultiplexed/ -b /home/gb92068/GATK_GBS_Pawnee_Elliott/barcode_lane3.txt -e ngoMIV -r -c -q
+process_radtags -p $fastq/lane4/ -o $result/demultiplexed/ -b /home/gb92068/GATK_GBS_Pawnee_Elliott/barcode_lane4.txt -e ngoMIV -r -c -q
