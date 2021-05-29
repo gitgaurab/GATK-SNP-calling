@@ -1,0 +1,152 @@
+#!/bin/bash
+#SBATCH --job-name=combine_gvcfs         # Job name
+#SBATCH --partition=batch             # Partition (queue) name
+#SBATCH --ntasks=1                    # Run on a single CPU
+#SBATCH --mem=64gb                     # Job memory request
+#SBATCH --time=124:00:00               # Time limit hrs:min:sec
+#SBATCH --output=combine_gvcfs.%j.out    # Standard output log
+#SBATCH --error=combine_gvcfs.%j.err     # Standard error log
+
+#SBATCH --mail-type=END,FAIL          # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=gb92068@uga.edu  # Where to send mail
+
+cd $SLURM_SUBMIT_DIR
+
+##Load the module and assign directory for sequence data and results
+
+ml GATK/4.1.6.0-GCCcore-8.3.0-Java-1.8
+
+ref='/scratch/gb92068/GATK_Pawnee_Elliott/GATK_GBS_Pawnee_Elliott/index_elliott/Carya_illinoinensis_var_Elliott_mainGenome_repeatMasked.fa'
+data='/scratch/gb92068/GATK_Pawnee_Elliott/GATK_GBS_Pawnee_Elliott/result/Elliott/GVCF/'
+result='/scratch/gb92068/GATK_Pawnee_Elliott/GATK_GBS_Pawnee_Elliott/result/Elliott/combined_GVCF/'
+
+
+##Run the command line
+
+gatk CombineGVCFs \
+-R  $ref \
+--variant $data/Elliott.g.vcf.gz \
+--variant $data/Pawnee.g.vcf.gz \
+--variant $data/PawXElliot-99-9-10.g.vcf.gz \
+--variant $data/PawXElliot-99-9-11.g.vcf.gz \
+--variant $data/PawXElliot-99-9-12.g.vcf.gz \
+--variant $data/PawXElliot-99-9-13.g.vcf.gz \
+--variant $data/PawXElliot-99-9-14.g.vcf.gz \
+--variant $data/PawXElliot-99-9-15.g.vcf.gz \
+--variant $data/PawXElliot-99-9-16.g.vcf.gz \
+--variant $data/PawXElliot-99-9-18.g.vcf.gz \
+--variant $data/PawXElliot-99-9-19.g.vcf.gz \
+--variant $data/PawXElliot-99-9-1.g.vcf.gz \
+--variant $data/PawXElliot-99-9-20.g.vcf.gz \
+--variant $data/PawXElliot-99-9-21.g.vcf.gz \
+--variant $data/PawXElliot-99-9-22.g.vcf.gz \
+--variant $data/PawXElliot-99-9-23.g.vcf.gz \
+--variant $data/PawXElliot-99-9-24.g.vcf.gz \
+--variant $data/PawXElliot-99-9-25.g.vcf.gz \
+--variant $data/PawXElliot-99-9-26.g.vcf.gz \
+--variant $data/PawXElliot-99-9-27.g.vcf.gz \
+--variant $data/PawXElliot-99-9-28.g.vcf.gz \
+--variant $data/PawXElliot-99-9-29.g.vcf.gz \
+--variant $data/PawXElliot-99-9-2.g.vcf.gz \
+--variant $data/PawXElliot-99-9-30.g.vcf.gz \
+--variant $data/PawXElliot-99-9-31.g.vcf.gz \
+--variant $data/PawXElliot-99-9-32.g.vcf.gz \
+--variant $data/PawXElliot-99-9-33.g.vcf.gz \
+--variant $data/PawXElliot-99-9-34.g.vcf.gz \
+--variant $data/PawXElliot-99-9-35.g.vcf.gz \
+--variant $data/PawXElliot-99-9-36.g.vcf.gz \
+--variant $data/PawXElliot-99-9-37.g.vcf.gz \
+--variant $data/PawXElliot-99-9-38.g.vcf.gz \
+--variant $data/PawXElliot-99-9-39.g.vcf.gz \
+--variant $data/PawXElliot-99-9-3.g.vcf.gz \
+--variant $data/PawXElliot-99-9-40.g.vcf.gz \
+--variant $data/PawXElliot-99-9-41.g.vcf.gz \
+--variant $data/PawXElliot-99-9-42.g.vcf.gz \
+--variant $data/PawXElliot-99-9-43.g.vcf.gz \
+--variant $data/PawXElliot-99-9-44.g.vcf.gz \
+--variant $data/PawXElliot-99-9-45.g.vcf.gz \
+--variant $data/PawXElliot-99-9-46.g.vcf.gz \
+--variant $data/PawXElliot-99-9-47.g.vcf.gz \
+--variant $data/PawXElliot-99-9-48.g.vcf.gz \
+--variant $data/PawXElliot-99-9-49.g.vcf.gz \
+--variant $data/PawXElliot-99-9-4.g.vcf.gz \
+--variant $data/PawXElliot-99-9-50.g.vcf.gz \
+--variant $data/PawXElliot-99-9-51.g.vcf.gz \
+--variant $data/PawXElliot-99-9-52.g.vcf.gz \
+--variant $data/PawXElliot-99-9-53.g.vcf.gz \
+--variant $data/PawXElliot-99-9-54.g.vcf.gz \
+--variant $data/PawXElliot-99-9-55.g.vcf.gz \
+--variant $data/PawXElliot-99-9-56.g.vcf.gz \
+--variant $data/PawXElliot-99-9-57.g.vcf.gz \
+--variant $data/PawXElliot-99-9-58.g.vcf.gz \
+--variant $data/PawXElliot-99-9-59.g.vcf.gz \
+--variant $data/PawXElliot-99-9-5.g.vcf.gz \
+--variant $data/PawXElliot-99-9-60.g.vcf.gz \
+--variant $data/PawXElliot-99-9-61.g.vcf.gz \
+--variant $data/PawXElliot-99-9-62.g.vcf.gz \
+--variant $data/PawXElliot-99-9-63.g.vcf.gz \
+--variant $data/PawXElliot-99-9-64.g.vcf.gz \
+--variant $data/PawXElliot-99-9-65.g.vcf.gz \
+--variant $data/PawXElliot-99-9-66.g.vcf.gz \
+--variant $data/PawXElliot-99-9-68.g.vcf.gz \
+--variant $data/PawXElliot-99-9-69.g.vcf.gz \
+--variant $data/PawXElliot-99-9-6.g.vcf.gz \
+--variant $data/PawXElliot-99-9-70.g.vcf.gz \
+--variant $data/PawXElliot-99-9-7.g.vcf.gz \
+--variant $data/PawXElliot-99-9-8.g.vcf.gz \
+--variant $data/PawXElliot-BW10.g.vcf.gz \
+--variant $data/PawXElliot-BW11.g.vcf.gz \
+--variant $data/PawXElliot-BW12.g.vcf.gz \
+--variant $data/PawXElliot-BW13.g.vcf.gz \
+--variant $data/PawXElliot-BW14.g.vcf.gz \
+--variant $data/PawXElliot-BW15.g.vcf.gz \
+--variant $data/PawXElliot-BW16.g.vcf.gz \
+--variant $data/PawXElliot-BW17.g.vcf.gz \
+--variant $data/PawXElliot-BW18.g.vcf.gz \
+--variant $data/PawXElliot-BW19.g.vcf.gz \
+--variant $data/PawXElliot-BW1.g.vcf.gz \
+--variant $data/PawXElliot-BW20.g.vcf.gz \
+--variant $data/PawXElliot-BW21.g.vcf.gz \
+--variant $data/PawXElliot-BW22.g.vcf.gz \
+--variant $data/PawXElliot-BW23.g.vcf.gz \
+--variant $data/PawXElliot-BW24.g.vcf.gz \
+--variant $data/PawXElliot-BW25.g.vcf.gz \
+--variant $data/PawXElliot-BW26.g.vcf.gz \
+--variant $data/PawXElliot-BW27.g.vcf.gz \
+--variant $data/PawXElliot-BW28.g.vcf.gz \
+--variant $data/PawXElliot-BW29.g.vcf.gz \
+--variant $data/PawXElliot-BW2.g.vcf.gz \
+--variant $data/PawXElliot-BW30.g.vcf.gz \
+--variant $data/PawXElliot-BW31.g.vcf.gz \
+--variant $data/PawXElliot-BW32.g.vcf.gz \
+--variant $data/PawXElliot-BW33.g.vcf.gz \
+--variant $data/PawXElliot-BW34.g.vcf.gz \
+--variant $data/PawXElliot-BW35.g.vcf.gz \
+--variant $data/PawXElliot-BW36.g.vcf.gz \
+--variant $data/PawXElliot-BW37.g.vcf.gz \
+--variant $data/PawXElliot-BW38.g.vcf.gz \
+--variant $data/PawXElliot-BW39.g.vcf.gz \
+--variant $data/PawXElliot-BW3.g.vcf.gz \
+--variant $data/PawXElliot-BW40.g.vcf.gz \
+--variant $data/PawXElliot-BW41.g.vcf.gz \
+--variant $data/PawXElliot-BW42.g.vcf.gz \
+--variant $data/PawXElliot-BW43.g.vcf.gz \
+--variant $data/PawXElliot-BW44.g.vcf.gz \
+--variant $data/PawXElliot-BW45.g.vcf.gz \
+--variant $data/PawXElliot-BW46.g.vcf.gz \
+--variant $data/PawXElliot-BW48.g.vcf.gz \
+--variant $data/PawXElliot-BW49.g.vcf.gz \
+--variant $data/PawXElliot-BW4.g.vcf.gz \
+--variant $data/PawXElliot-BW50.g.vcf.gz \
+--variant $data/PawXElliot-BW51.g.vcf.gz \
+--variant $data/PawXElliot-BW52.g.vcf.gz \
+--variant $data/PawXElliot-BW53.g.vcf.gz \
+--variant $data/PawXElliot-BW54.g.vcf.gz \
+--variant $data/PawXElliot-BW55.g.vcf.gz \
+--variant $data/PawXElliot-BW56.g.vcf.gz \
+--variant $data/PawXElliot-BW5.g.vcf.gz \
+--variant $data/PawXElliot-BW6.g.vcf.gz \
+--variant $data/PawXElliot-BW7.g.vcf.gz \
+--variant $data/PawXElliot-BW8.g.vcf.gz \
+--variant $data/PawXElliot-BW9.g.vcf.gz \
+-O $result/combined.g.vcf.gz
