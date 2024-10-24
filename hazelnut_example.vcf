@@ -1,11 +1,12 @@
 ##fileformat=VCFv4.2
-##INFO=<ID=AB,Number=1,Type=Float,Description="Allele Balance for heterozygous calls">
-##FILTER=<ID=MIN_AB,Description="Allele balance below threshold of 0.3">
+##INFO=<ID=AB,Number=1,Type=Float,Description="Allelic Balance">
 ##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
-##FORMAT=<ID=AB,Number=1,Type=Float,Description="Allele Balance">
-#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT      Ind1        Ind2        Ind3        Ind4        Ind5
-chr1    100     .       A       G       .       PASS    .       GT:AB       0/0:.      0/1:0.33    0/1:0.50    0/0:.      0/1:0.60
-chr1    200     .       A       G       .       PASS    .       GT:AB       0/0:.      0/1:0.40    0/1:0.375   0/1:0.375   0/0:.
-chr1    300     .       A       G       .       PASS    .       GT:AB       0/1:0.40   0/0:.       0/0:.       0/1:0.40    0/1:0.33
-chr1    400     .       A       G       .       PASS    .       GT:AB       0/0:.      0/1:0.33    0/1:0.33    0/1:0.33    0/1:0.33
-chr1    500     .       A       G       .       PASS    .       GT:AB       0/0:.      0/0:.       0/1:0.33    0/1:0.33    0/0:.
+##FORMAT=<ID=AD,Number=R,Type=Integer,Description="Allelic depths for the ref and alt alleles in the order listed">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Read Depth">
+##FORMAT=<ID=AB,Number=1,Type=Float,Description="Allelic Balance">
+#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  Ind1            Ind2            Ind3            Ind4            Ind5
+chr1    1000    .       A       G       100     PASS    .       GT:AD:DP:AB    0/1:15,5:20:0.25   0/1:14,7:21:0.33   0/1:10,10:20:0.50   0/1:30,10:40:0.25   0/1:8,12:20:0.60
+chr1    2000    .       A       G       100     PASS    .       GT:AD:DP:AB    0/1:20,5:25:0.20   0/1:18,12:30:0.40  0/1:25,15:40:0.375 0/1:50,30:80:0.375  0/1:22,8:30:0.27
+chr1    3000    .       A       G       100     PASS    .       GT:AD:DP:AB    0/1:15,10:25:0.40  0/1:12,3:15:0.20   0/1:50,5:55:0.09   0/1:30,20:50:0.40   0/1:10,5:15:0.33
+chr1    4000    .       A       G       100     PASS    .       GT:AD:DP:AB    0/1:25,10:35:0.29  0/1:30,15:45:0.33  0/1:40,20:60:0.33  0/1:50,25:75:0.33   0/1:20,10:30:0.33
+chr1    5000    .       A       G       100     PASS    .       GT:AD:DP:AB    0/1:25,10:35:0.29  0/1:20,8:28:0.29   0/1:10,5:15:0.33   0/1:10,5:15:0.33    0/1:8,2:10:0.20
