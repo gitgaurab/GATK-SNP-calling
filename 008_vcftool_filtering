@@ -1,0 +1,152 @@
+
+https://speciationgenomics.github.io/filtering_vcfs/   Useful link
+VCFtools version: VCFtools/0.1.16-GCC-8.3.0-Perl-5.30.0
+
+
+
+1. Removing indels
+
+vcftools --gzvcf final.vcf.gz --remove-indels --recode --recode-INFO-all --out ./output/1_no_indel
+
+VCFtools - 0.1.16
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+        --gzvcf final.vcf.gz
+        --recode-INFO-all
+        --out ./output/1_no_indel
+        --recode
+        --remove-indels
+
+After filtering, kept 124 out of 124 Individuals
+Outputting VCF file...
+After filtering, kept 162838 out of a possible 171356 Sites
+Run Time = 42.00 seconds
+
+
+2. Retaining biallelic SNPs only
+
+gb92068@ss-sub3 vcftools_filtering$ vcftools --vcf ./output/1_no_indel.recode.vcf --min-alleles 2 --max-alleles 2  --recode --out ./output/2_biallelic_only
+
+VCFtools - 0.1.16
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+        --vcf ./output/1_no_indel.recode.vcf
+        --max-alleles 2
+        --min-alleles 2
+        --out ./output/2_biallelic_only
+        --recode
+
+
+After filtering, kept 124 out of 124 Individuals
+Outputting VCF file...
+After filtering, kept 159297 out of a possible 162838 Sites
+Run Time = 39.00 seconds
+
+3. Calculate allele frequency
+
+vcftools --vcf ./output/2_biallelic_only.recode.vcf --freq2 --out ./output/allele_frequency_each_site
+
+
+4. Calculate mean depth per individual
+
+vcftools --vcf ./output/2_biallelic_only.recode.vcf --depth --out ./output/Mean_depth_per_individual
+
+
+
+5. Mean depth per site
+
+vcftools --vcf ./output/2_biallelic_only.recode.vcf --site-mean-depth --out ./output/Mean_depth_per_site
+
+6. Calculate site quality
+
+vcftools_filtering$ vcftools --vcf ./output/2_biallelic_only.recode.vcf --site-quality --out ./output/Site_quality
+
+7. Calculate proportion of missing data per individual
+
+vcftools --vcf ./output/2_biallelic_only.recode.vcf --missing-indv --out ./output/Missing_data_per_individual
+
+
+8. Calculate proportion of missing data per site
+
+vcftools --vcf ./output/2_biallelic_only.recode.vcf --missing-site --out ./output/Missing_data_per_site
+
+9. Calculate heterozygosity and inbreeding coefficient per individual
+
+vcftools --vcf ./output/2_biallelic_only.recode.vcf --het --out ./output/Hereto_Inbreed
+
+
+9. Filtering parameter
+--maf 0.1
+--min-meanDP 8
+--max-meanDP 60
+--max-missing 0.9
+--minDP 10
+--maxDP 60
+
+vcftools --vcf ./output/2_biallelic_only.recode.vcf --maf 0.1 --max-missing 0.9 --min-meanDP 8 --max-meanDP 60 --minDP 10 --maxDP 60 --recode --stdout |gzip -c > ./output/Filtered.vcf.gz
+
+
+10. Filtering based on Allele balance using Picardtools (https://gatk.broadinstitute.org/hc/en-us/articles/360036479772-FilterVcf-Picard-)
+
+- First unzip the Filtered.vcf.gz
+
+gunzip Filtered.vcf.gz
+
+- Run the PICARD tool
+
+ml picard/2.21.6-Java-11
+
+java -jar $EBROOTPICARD/picard.jar FilterVcf I=Filtered.vcf O=Filtered_AB.vcf MIN_AB=0.25
+
+After filtering, the filter column will have 'AlleleBalance' and 'PASS'. We need to filter out those that doesnot cross AB threshold.
+
+FILTER FLAG FILTERING
+
+--remove-filtered-all
+
+Removes all sites with a FILTER flag other than PASS.
+
+
+ml VCFtools/0.1.16-GCC-8.3.0-Perl-5.30.0
+
+vcftools --vcf Filtered_AB.vcf --remove-filtered-all --recode --out Filtered_AB_PASS
+
+VCFtools - 0.1.16
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+        --vcf Filtered_AB.vcf
+        --out Filtered_AB_PASS
+        --recode
+        --remove-filtered-all
+
+After filtering, kept 124 out of 124 Individuals
+Outputting VCF file...
+After filtering, kept 5873 out of a possible 5904 Sites
+Run Time = 2.00 seconds
+
+
+11. Extract GT and AD info only
+
+vcftools --gzvcf Filtered.vcf.gz --extract-FORMAT-info GT --out GT_format
+vcftools --gzvcf Filtered.vcf.gz --extract-FORMAT-info AD --out AD_format
+
+Did the same for AB PASSed VCF.
+
+
+
+12. JoinMap conversion
+
+https://sourceforge.net/p/ngsep/discussion/faq/thread/f904da69/
+This link has the discussion about wrong SNP calls especially for homozygous sites that are not true according to parental genotypes. such as pp and mm
+
+The current version of NGSEP will convert these erroneous genotypes into '--'. 
+First I converted VCF file into GT format, I converted the same VCF file into JoinMap format using NGSEP and went back to the GT format file, selected the 'CP' type markers with vlookup in excel and manually remove the markers with those erroneous calls.
+
+
+
+ml NGSEPcore/4.1.1-foss-2019b-Java-11
+java -jar ${EBROOTNGSEPCORE}/NGSEPcore.jar VCFConverter -joinMap -i Filtered_AB_PASS.recode.vcf -p1 Pawnee -p2 Elliott -o Filtered_AB_PASS >&joinmap.log
+
