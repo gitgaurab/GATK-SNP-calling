@@ -1,0 +1,11 @@
+##fileformat=VCFv4.2
+##INFO=<ID=AB,Number=1,Type=Float,Description="Allele Balance for heterozygous calls">
+##FILTER=<ID=MIN_AB,Description="Allele balance below threshold of 0.3">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=AB,Number=1,Type=Float,Description="Allele Balance">
+#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT      Ind1        Ind2        Ind3        Ind4        Ind5
+chr1    100     .       A       G       .       PASS    .       GT:AB       0/0:.      0/1:0.33    0/1:0.50    0/0:.      0/1:0.60
+chr1    200     .       A       G       .       PASS    .       GT:AB       0/0:.      0/1:0.40    0/1:0.375   0/1:0.375   0/0:.
+chr1    300     .       A       G       .       PASS    .       GT:AB       0/1:0.40   0/0:.       0/0:.       0/1:0.40    0/1:0.33
+chr1    400     .       A       G       .       PASS    .       GT:AB       0/0:.      0/1:0.33    0/1:0.33    0/1:0.33    0/1:0.33
+chr1    500     .       A       G       .       PASS    .       GT:AB       0/0:.      0/0:.       0/1:0.33    0/1:0.33    0/0:.
